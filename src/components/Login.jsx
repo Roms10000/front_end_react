@@ -113,9 +113,9 @@ export default function Login () {
 
           <p className="mt-10 text-center text-sm/6 text-gray-500">
             Pas encore membre ?{' '}
-            <a href="http://localhost:5173/register" className="font-semibold text-rose-200 hover:text-amber-500">
+            <Link to="register" className="font-semibold text-rose-200 hover:text-amber-500">
               S'inscrire
-            </a>
+            </Link>
           </p>
         </div>
       </div>
