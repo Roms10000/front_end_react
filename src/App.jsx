@@ -22,7 +22,7 @@ export default function App() {
         <Route path="/nav" element={<Nav />} />
         <Route path="/modal" element={<Modal />} />
         <Route path="/modal1" element={<Modal1 />} />
-        <Route path="/requestquote" element={<RequestQuote/>} />
+        <Route path="/requestQuote" element={<RequestQuote/>} />
       </Routes>     
     </>
   )
