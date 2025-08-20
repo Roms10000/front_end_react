@@ -4,7 +4,7 @@ import { Link } from "react-router";
 export default function Nav() {
 
     return (
-<nav className="border-gray-200 bg-gray-50">
+<nav className="border-gray-400 bg-gray-200">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="./img/ordi.webp" className="h-8" alt="Your company" />
