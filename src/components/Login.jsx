@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+
 
 export default function Login () {
 
@@ -30,7 +30,7 @@ export default function Login () {
         // Votre contrôleur Symfony renvoie 'id' et 'token'.
         // Assurez-vous de stocker l'ID sous la clé 'id' pour la cohérence avec RequestQuote.  
         if (data.token && data.id) {
-          localStorage.setItem("token", data.token); // Stocke le token d'authentification
+          localStorage.setItem("authToken", data.token); // Stocke le token d'authentification
           localStorage.setItem("id", data.id);       // Stocke l'ID de l'utilisateur sous la clé 'id'
           navigate("/");
         } else {
