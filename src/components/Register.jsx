@@ -6,7 +6,8 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nom, setNom] = useState("");
-  const [prenom, setPrenom] = useState("");
+  const [prénom, setPrénom] = useState("");
+
 
   const navigate = useNavigate();
 
@@ -21,8 +22,8 @@ export default function Register() {
           email,
           password,
           nom,
-          prenom,
-          role: ["ROLE_USER"],
+          prénom,
+          roles: ["ROLE_USER"],
         }),
       });
 
@@ -77,10 +78,10 @@ export default function Register() {
               <div className="mt-2">
                 <input
                   id="prenom"
-                  name="prenom"
-                  type="prenom"
+                  name="prénom"
+                  type="prénom"
                   required
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300  focus:outline-2 focus:-outline-offset-2 focus:outline-rose-200 sm:text-sm/6"  value={prenom} onChange={(e)=> setPrenom(e.target.value)}
+                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300  focus:outline-2 focus:-outline-offset-2 focus:outline-rose-200 sm:text-sm/6"  value={prénom} onChange={(e)=> setPrénom(e.target.value)}
                 />
               </div>
             </div>
@@ -116,10 +117,10 @@ export default function Register() {
               </div>
             </div>
                 <div>
-              <label htmlFor="pseudo" className="block text-sm/6 font-medium text-gray-900">
+              {/* <label htmlFor="pseudo" className="block text-sm/6 font-medium text-gray-900">
                 Vérifiez votre mots de passe
-              </label>
-              <div className="mt-2">
+              </label> */}
+              {/* <div className="mt-2">
                 <input
                   id="password2"
                   name="password2"
@@ -127,12 +128,12 @@ export default function Register() {
                   required
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300  focus:outline-2 focus:-outline-offset-2 focus:outline-rose-200 sm:text-sm/6"
                 />
-              </div>
+              </div> */}
               <div>
                 <input
                   type="hidden"
                   id="role"
-                  name="role"
+                  name="roles"
                   value='["ROLE_USER"]'
                 />
               </div>
