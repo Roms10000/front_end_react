@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Nav from "./components/Nav";
 import Modal from "./components/Modal";
 import Modal1 from "./components/Modal1";
+import RequestQuote from "./components/RequestQuote";
 import { Route,Routes } from "react-router"
 import './App.css'
 
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/nav" element={<Nav />} />
         <Route path="/modal" element={<Modal />} />
         <Route path="/modal1" element={<Modal1 />} />
+        <Route path="/requestquote" element={<RequestQuote/>} />
       </Routes>     
     </>
   )
