@@ -27,19 +27,23 @@ export default function Login () {
         const data = await res.json();
         console.log("Réponse API:", data);
 
+        // Votre contrôleur Symfony renvoie 'id' et 'token'.
+        // Assurez-vous de stocker l'ID sous la clé 'id' pour la cohérence avec RequestQuote.  
+        if (data.token && data.id) {
+          localStorage.setItem("token", data.token); // Stocke le token d'authentification
+          localStorage.setItem("id", data.id);       // Stocke l'ID de l'utilisateur sous la clé 'id'
           navigate("/");
+        } else {
+          // Gère les cas où le token ou l'ID manquent dans la réponse, bien que le res.ok soit true
+          throw new Error("Token ou ID utilisateur non reçus de l'API.");
+        }
+
+          
       } catch (error) {
         console.error("Erreur fetch:", error);
-        alert("Impossible de créer le compte !");
+        alert("Impossible de se connecter !");
       }
     };
-    // ici, tu pourrais envoyer les infos au backend avec fetch ou axios
-    // exemple :
-    // fetch("/api/login", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ email, mdp })
-    // });
     return (
     <>
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">

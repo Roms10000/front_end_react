@@ -3,6 +3,27 @@ import { Link } from "react-router";
 
 export default function Nav() {
 
+  const handleLogout = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+  
+    try {
+      await fetch("http://localhost:8000/api/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token
+        },
+      });
+    } catch (error) {
+      console.error("Erreur lors du logout :", error);
+    } finally {
+      localStorage.removeItem("token");
+      localStorage.removeItem("userId");
+      window.location.href = "/login";
+    }
+  };
+
     return (
 <nav className="border-gray-200 bg-gray-50">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -18,6 +39,9 @@ export default function Nav() {
     </button>
     <div className="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
       <ul className="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
+      <button onClick={handleLogout} className="btn-logout">
+          Se déconnecter
+        </button>
         <li>
           <Link to="/login" className="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-rose-200">Connexion</Link>
         </li>

@@ -5,11 +5,10 @@ import Nav from "./Nav";
 
 export default function RequestQuote() {
   const [nom, setNom] = useState("");
-  const [prénom, setPrénom] = useState("");
+  const [prenom, setPrenom] = useState("");
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
-  const [userId, setUserId] = useState(null);
 
   const adaptCategories = (data) => {
     console.log("Data reçue dans adaptCategories :", data);
@@ -56,17 +55,22 @@ export default function RequestQuote() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const userId = localStorage.getItem("id");
+    console.log(userId);
 
     try {
-      const res = await fetch("http://localhost:8000/api/demande", {
+      const res = await fetch("http://localhost:8000/api/demandes", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "accept": "application/ld+json",
+          "Content-Type": "application/ld+json" 
+        },
         body: JSON.stringify({
           nom,
-          prénom,
+          prenom,
           description,
-          category,
-          // user_id: userId,
+          category: `/api/categories/${category}`,
+          user: `/api/users/${userId}`,
         }),
       });
 
@@ -78,7 +82,7 @@ export default function RequestQuote() {
       navigate("/");
     } catch (error) {
       console.error("Erreur fetch:", error);
-      alert("Impossible de créer le compte !");
+      alert("Impossible de créer la demande !");
     }
   };
     return (
@@ -124,7 +128,7 @@ export default function RequestQuote() {
                   name="prénom"
                   type="text"
                   required
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300  focus:outline-2 focus:-outline-offset-2 focus:outline-rose-200 sm:text-sm/6"  value={prénom} onChange={(e)=> setPrénom(e.target.value)}
+                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300  focus:outline-2 focus:-outline-offset-2 focus:outline-rose-200 sm:text-sm/6"  value={prenom} onChange={(e)=> setPrenom(e.target.value)}
                 />
               </div>
             </div>
