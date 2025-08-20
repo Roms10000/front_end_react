@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import { Link } from "react-router";
 
 export default function Login () {
@@ -6,9 +7,32 @@ export default function Login () {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-const handleSubmit = (e) => {
-e.preventDefault();
-};
+    const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+      try {
+        const res = await fetch("http://localhost:8000/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        });
+
+        if (!res.ok) throw new Error("Erreur serveur");
+
+        const data = await res.json();
+        console.log("Réponse API:", data);
+
+          navigate("/");
+      } catch (error) {
+        console.error("Erreur fetch:", error);
+        alert("Impossible de créer le compte !");
+      }
+    };
     // ici, tu pourrais envoyer les infos au backend avec fetch ou axios
     // exemple :
     // fetch("/api/login", {
