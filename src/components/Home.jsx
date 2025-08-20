@@ -18,7 +18,16 @@ export default function Home () {
                     <Modal />
                     <Modal1 />
                 </div>
-                
+                <div className="mt-10 text-lg">
+                <ul>Nous pouvons réaliser différentes prestations :</ul>
+                <li>Site vitrine</li>
+                <li>Site e-commerce</li>
+                <li>Maquette site internet</li>
+                <li>Dépannage site</li>
+                <li>Back end gestion d'éléments</li>
+                <li></li>
+                <li></li>
+                </div>
             </div>
             <div className="mt-20 flex justify-center">
             <p className="font-bold text-2xl">Contact</p>
