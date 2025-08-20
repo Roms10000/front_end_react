@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+
 
 export default function Login () {
 
@@ -27,7 +27,15 @@ export default function Login () {
         const data = await res.json();
         console.log("Réponse API:", data);
 
-          navigate("/");
+        // Stocker le token dans le localStorage
+        if (data.token) {
+                localStorage.setItem("authToken", data.token); // Sauvegarde le token
+                navigate("/");
+            } else {
+                throw new Error("Token non reçu");
+            }
+
+         
       } catch (error) {
         console.error("Erreur fetch:", error);
         alert("Impossible de créer le compte !");
