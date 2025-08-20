@@ -1,28 +1,42 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import { Link } from "react-router";
 
-export default function Regsiter () {
+export default function Register() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [nom, setNom] = useState("");
+  const [prenom, setPrenom] = useState("");
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [nom, setNom] = useState("");
-    const [prenom, setPrenom] = useState("");
+  const navigate = useNavigate();
 
-const handleSubmit = (e) => {
-e.preventDefault();
-};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-const handleClick = () => {
-navigate("/");
-};
-    // ici, tu pourrais envoyer les infos au backend avec fetch ou axios
-    // exemple :
-    // fetch("/api/login", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ email, mdp })
-    // });
+    try {
+      const res = await fetch("http://localhost:8000/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          password,
+          nom,
+          prenom,
+          role: ["ROLE_USER"],
+        }),
+      });
 
+      if (!res.ok) throw new Error("Erreur serveur");
+
+      const data = await res.json();
+      console.log("Réponse API:", data);
+
+      navigate("/");
+    } catch (error) {
+      console.error("Erreur fetch:", error);
+      alert("Impossible de créer le compte !");
+    }
+  };
     return (
     <>
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -40,7 +54,7 @@ navigate("/");
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" onSubmit={handleSubmit} className="space-y-6">
+          <form method="POST" onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
                 Adresse e-mail
@@ -114,11 +128,18 @@ navigate("/");
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300  focus:outline-2 focus:-outline-offset-2 focus:outline-rose-200 sm:text-sm/6"
                 />
               </div>
+              <div>
+                <input
+                  type="hidden"
+                  id="role"
+                  name="role"
+                  value='["ROLE_USER"]'
+                />
+              </div>
             </div>
             <div>
               <button
                 type="submit"
-                onClick={handleClick}
                 className="flex w-full justify-center rounded-md bg-rose-200 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-rose-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-300"
               >
                 S'enregistrer
