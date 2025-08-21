@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 // Composant de modal pour afficher un devis complet en se connectant à un backend Symfony (API Platform).
-export default function ModalDevis() {
+export default function ModalDevis({devisId}) {
   const [showModal, setShowModal] = useState(false);
   const [devisData, setDevisData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const API_URL = "http://localhost:8000/api/devis/";
+  const API_URL = `http://localhost:8000/api/devis/${devisId}`;
+  
 
   const developpeurData = {
     nom: "Pdev",
@@ -33,12 +34,13 @@ export default function ModalDevis() {
         
         const apiData = await response.json();
         
-
-        if (!apiData || !apiData.member || apiData.member.length === 0) {
+        console.log(apiData);
+        if (apiData=== 0) {
           throw new Error("La collection de devis est vide.");
         }
 
-        const firstDevis = apiData.member[0];
+
+        const firstDevis = apiData;
         console.log("Données du premier devis :", firstDevis);
         const formattedData = {
           developpeur: developpeurData,
@@ -71,7 +73,7 @@ export default function ModalDevis() {
 
   if (loading) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 text-white text-xl">
+      <div className="fixed inset-0 z-50 flex items-center justify-center  text-white text-xl">
         Chargement...
       </div>
     );
@@ -79,7 +81,7 @@ export default function ModalDevis() {
 
   if (error) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 text-red-400 text-xl text-center p-4">
+      <div className="fixed inset-0 z-50 flex items-center justify-center  text-red-400 text-xl text-center p-4">
         {error}
       </div>
     );
@@ -89,7 +91,7 @@ export default function ModalDevis() {
 
   if (!data || !data.devis || !data.devis.prestations) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 text-white text-xl">
+      <div className="fixed inset-0 z-50 flex items-center justify-center  text-white text-xl">
         Aucune donnée de devis ou de prestations trouvée.
       </div>
     );
@@ -102,12 +104,12 @@ const ModalContent = () => (
       aria-modal="true"
     >
       <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="relative bg-white rounded-lg shadow-2xl dark:bg-gray-800 p-6">
+        <div className="relative bg-white rounded-lg shadow-2xl p-6">
           <div className="flex items-center justify-between border-b pb-4 mb-4 border-gray-200 dark:border-gray-600">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Devis</h3>
             <button
               type="button"
-              className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+              className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
               onClick={handleToggleModal}
             >
               <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -125,14 +127,14 @@ const ModalContent = () => (
               <p className="mt-4">Date : <span className="font-bold">{data.devis?.date}</span></p>
               <p>N° Devis : <span className="font-bold">{data.devis?.numero}</span></p>
             </div>
-            <div className="text-right text-gray-600 dark:text-gray-400">
-              <p className="font-semibold text-gray-900 dark:text-white">Client</p>
+            <div className="text-right text-gray-600">
+              <p className="font-semibold text-gray-900">Client</p>
               <p>{data.client?.prenom} {data.client?.nom}</p>
             </div>
           </div>
           <div className="overflow-x-auto shadow-md rounded-lg mb-6">
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-gray-700 uppercase bg-rose-200 hover:bg-rose-300 dark:text-gray-400">
+            <table className="w-full text-sm text-left text-gray-500 ">
+              <thead className="text-xs text-gray-700 uppercase bg-rose-200 hover:bg-rose-300">
                 <tr>
                   <th scope="col" className="px-6 py-3">Prestation</th>
                   <th scope="col" className="px-6 py-3">Quantité</th>
@@ -142,7 +144,7 @@ const ModalContent = () => (
               </thead>
               <tbody>
                 {data.devis.prestations.map((prestationItem, index) => (
-                  <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <tr key={index} className="bg-white border-b hover:bg-gray-50">
                     <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{prestationItem.prestation.nom}</td>
                     <td className="px-6 py-4">{prestationItem.quantity}</td>
                     <td className="px-6 py-4">{prestationItem.prestation.pu ? parseFloat(prestationItem.prestation.pu).toFixed(2) : '0.00'} €</td>

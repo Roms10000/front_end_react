@@ -1,9 +1,10 @@
 import Nav from "./Nav";
 import Footer from "./Footer";
+import ModalDevis from "./ModalDevis";
 import { button } from "@material-tailwind/react";
 import React, { useState, useEffect } from "react";
 
-export default function Dashboard () {
+export default function Dashboard ({userId}) {
 
     const [demandes, setDemandes] = useState([]);
      const [devis, setDevis] = useState([]);
@@ -24,7 +25,7 @@ const adaptDevis = (data) => {
 
     return {
       id: devi.id,
-      total: devi.total,
+      numero: devi.numero,
       statut: devi.statut,
       demandeId: demandeId,
       facture: devi.facture
@@ -53,7 +54,7 @@ useEffect(() => {
 
  const fetchDevis= async () => {
     try{
-        const res = await fetch("http://localhost:8000/api/devis");
+        const res = await fetch(`http://localhost:8000/api/devis/${userId}`);
         if (!res.ok) throw new Error("Erreur fetch devis");
         const data = await res.json();
 
@@ -104,14 +105,15 @@ return(
                     <tr key={demande.id} className="border-t hover:bg-gray-50">
                         <td className="px-4 py-2">{demande.id}</td>
                         <td className="px-4 py-2">{demande.description}</td>
-                        <td className="px-4 py-2">{demande.devis ? demande.devis.id : "--"}</td>
+                        <td className="px-4 py-2">{demande.devis ? demande.devis.numero : "--"}</td>
                         <td className="px-4 py-2">{demande.devis ? demande.devis.statut : "--"}</td>
-                        <td className="px-4 py-2">
-                        <button
-                        type="button"
-                        className="block text-white bg-rose-200 hover:bg-rose-300 focus:ring-4 focus:outline-none font-medium rounded-lg text-xs px-3 py-1.5 text-center"
-                        >VOIR</button>
-                        </td>
+                    <td className="px-4 py-2">
+                    {demande.devis && demande.devis.id ? (
+                        <ModalDevis devisId={demande.devis.id} />
+                    ) : (
+                        "--"
+                    )}
+                    </td>
                         <td className="px-4 py-2">
                         {demande.devis && demande.devis.facture ? (
                         <a href={demande.devis.facture} target="_blank" rel="noopener noreferrer" className="text-rose-200 underline">Voir facture</a>) : "--"}

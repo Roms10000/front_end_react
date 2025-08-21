@@ -14,6 +14,7 @@ export default function Nav() {
     
     const token = localStorage.getItem("authToken");
     const storedUserName = localStorage.getItem("userName");
+    const storedUserId = localStorage.getItem("userId");
 
     // Met à jour l'état si un token et un nom sont présents
     setIsLoggedIn(!!token);
