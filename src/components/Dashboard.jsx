@@ -54,7 +54,7 @@ useEffect(() => {
 
  const fetchDevis= async () => {
     try{
-        const res = await fetch(`http://localhost:8000/api/devis/${userId}`);
+        const res = await fetch(`http://localhost:8000/api/devis/`);
         if (!res.ok) throw new Error("Erreur fetch devis");
         const data = await res.json();
 
