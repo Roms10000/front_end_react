@@ -5,6 +5,7 @@ import { Link } from "react-router";
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [nom, setNom] = useState("");
   const [prénom, setPrénom] = useState("");
 
@@ -13,6 +14,11 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+    alert("Les mots de passe ne correspondent pas !");
+    return;
+  }
 
     try {
       const res = await fetch("http://localhost:8000/api/register", {
@@ -117,18 +123,19 @@ export default function Register() {
               </div>
             </div>
                 <div>
-              {/* <label htmlFor="pseudo" className="block text-sm/6 font-medium text-gray-900">
+              <label htmlFor="pseudo" className="block text-sm/6 font-medium text-gray-900">
                 Vérifiez votre mots de passe
-              </label> */}
-              {/* <div className="mt-2">
+              </label> 
+              <div className="mt-2">
                 <input
                   id="password2"
                   name="password2"
                   type="password"
                   required
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300  focus:outline-2 focus:-outline-offset-2 focus:outline-rose-200 sm:text-sm/6"
+                  value={confirmPassword} onChange={(e)=> setConfirmPassword(e.target.value)}
                 />
-              </div> */}
+              </div> 
               <div>
                 <input
                   type="hidden"
