@@ -5,6 +5,7 @@ export default function Nav() {
 
   // Gère l'état de connexion et le nom de l'utilisateur
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [userName, setUserName] = useState('');
   const navigate = useNavigate();
 
@@ -75,6 +76,7 @@ export default function Nav() {
                 <img src="./img/ordi.webp" className="h-8" alt="Your company" />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap">Pdev</span>
             </Link>
+                <span className="block py-2 px-3 md:p-0 text-gray-900 font-medium rounded-sm md:hover:bg-transparent md:border-0 md:hover:text-rose-200">Bonjour, {userName}</span>
             <button data-collapse-toggle="navbar-solid-bg" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-solid-bg" aria-expanded="false">
                 <span className="sr-only">Open main menu</span>
                 <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -86,11 +88,6 @@ export default function Nav() {
                   {isLoggedIn ? 
                               ( 
                                 <>
-                                    <li className="flex items-center">
-                                        <span className="block py-2 px-3 md:p-0 text-gray-900 rounded-sm">
-                                            Bonjour, {userName}
-                                        </span>
-                                    </li>
                                     <li>
                                         <Link to="/dashboard" className="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-rose-200">Dashboard</Link>
                                     </li>
