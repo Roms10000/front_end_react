@@ -6,7 +6,7 @@ export default function Login () {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const [error, setError] = useState("");
     const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -22,26 +22,31 @@ export default function Login () {
           }),
         });
 
-        if (!res.ok) throw new Error("Erreur serveur");
-
+        if (!res.ok) {
+            const errorData = await res.json();
+            throw new Error(errorData.message || "Erreur serveur");
+        }
+        
         const data = await res.json();
         console.log("Réponse API:", data);
 
-        // Votre contrôleur Symfony renvoie 'id' et 'token'.
-        // Assurez-vous de stocker l'ID sous la clé 'id' pour la cohérence avec RequestQuote.  
-        if (data.token && data.id) {
-          localStorage.setItem("authToken", data.token); // Stocke le token d'authentification
-          localStorage.setItem("id", data.id);       // Stocke l'ID de l'utilisateur sous la clé 'id'
+        // Stocker le token ET le nom de l'utilisateur et 'id' dans le localStorage
+        if (data.token && data.user && data.user.prénom && data.user.nom) {
+          const fullName = `${data.user.prénom} ${data.user.nom}`;
+          localStorage.setItem("authToken", data.token); 
+          localStorage.setItem("id", data.id);       
+          localStorage.setItem("userName", fullName);      
+
           navigate("/");
         } else {
-          // Gère les cas où le token ou l'ID manquent dans la réponse, bien que le res.ok soit true
-          throw new Error("Token ou ID utilisateur non reçus de l'API.");
+          // Gère les cas où le token ou le nom d'utilisateur ou l'ID manquent dans la réponse, bien que le res.ok soit true
+          throw new Error("Token ou nom utilisateur non reçus");
         }
 
           
-      } catch (error) {
-        console.error("Erreur fetch:", error);
-        alert("Impossible de se connecter !");
+      } catch (err) {
+        console.error("Erreur fetch:", err);
+        setError("Impossible de se connecter !");
       }
     };
     return (
