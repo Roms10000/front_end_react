@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 // Composant de modal pour afficher un devis complet en se connectant à un backend Symfony (API Platform).
 export default function ModalDevis() {
+  const [showModal, setShowModal] = useState(false);
   const [devisData, setDevisData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -62,6 +64,11 @@ export default function ModalDevis() {
     fetchDevisData();
   }, []);
 
+
+  const handleToggleModal = () => {
+    setShowModal(!showModal);
+  };
+
   if (loading) {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 text-white text-xl">
@@ -88,13 +95,21 @@ export default function ModalDevis() {
     );
   }
 
-  return (
-    <div id="modal-devis" tabIndex="-1" aria-hidden="true" className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm p-4">
+const ModalContent = () => (
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70 backdrop-blur-sm p-4"
+      role="dialog"
+      aria-modal="true"
+    >
       <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="relative bg-white rounded-lg shadow-lg dark:bg-gray-800 p-6">
+        <div className="relative bg-white rounded-lg shadow-2xl dark:bg-gray-800 p-6">
           <div className="flex items-center justify-between border-b pb-4 mb-4 border-gray-200 dark:border-gray-600">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Devis</h3>
-            <button type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+            <button
+              type="button"
+              className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+              onClick={handleToggleModal}
+            >
               <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
               </svg>
@@ -148,5 +163,23 @@ export default function ModalDevis() {
         </div>
       </div>
     </div>
+  );
+
+  return (
+    <>
+      <button
+        onClick={handleToggleModal}
+        className="inline-flex items-center justify-center text-white bg-rose-200 hover:bg-rose-300 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-200 shadow-md hover:shadow-lg"
+      >
+        <svg className="w-4 h-4 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 12.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+          <path fillRule="evenodd" d="M.661 8.163A1.5 1.5 0 012 6.848a8.5 8.5 0 0116.035 0 1.5 1.5 0 011.339 1.315v3.174a1.5 1.5 0 01-1.339 1.315H2a1.5 1.5 0 01-1.339-1.315V8.163zM10 10.5a5.5 5.5 0 100-11 5.5 5.5 0 000 11z" clipRule="evenodd" />
+        </svg>
+        Voir le devis
+      </button>
+
+      {/* Rendre la modale via un portail si showModal est true */}
+      {showModal && createPortal(<ModalContent />, document.body)}
+    </>
   );
 }
