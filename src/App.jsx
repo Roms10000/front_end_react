@@ -7,6 +7,7 @@ import Modal from "./components/Modal";
 import Modal1 from "./components/Modal1";
 import ModalDevis from "./components/ModalDevis";
 import Footer from "./components/Footer";
+import Dashboard from "./components/Dashboard";
 import RequestQuote from "./components/RequestQuote";
 import { Route,Routes } from "react-router"
 import './App.css'
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="/footer" element={<Footer />} />
         <Route path="/modal1" element={<Modal1 />} />
         <Route path="/requestQuote" element={<RequestQuote/>} />
+        <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/modalDevis" element={<ModalDevis />} />
       </Routes>     
     </>
