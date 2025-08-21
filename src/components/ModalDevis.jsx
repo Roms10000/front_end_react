@@ -173,10 +173,6 @@ const ModalContent = () => (
         onClick={handleToggleModal}
         className="inline-flex items-center justify-center text-white bg-rose-200 hover:bg-rose-300 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-200 shadow-md hover:shadow-lg"
       >
-        <svg className="w-4 h-4 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 12.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
-          <path fillRule="evenodd" d="M.661 8.163A1.5 1.5 0 012 6.848a8.5 8.5 0 0116.035 0 1.5 1.5 0 011.339 1.315v3.174a1.5 1.5 0 01-1.339 1.315H2a1.5 1.5 0 01-1.339-1.315V8.163zM10 10.5a5.5 5.5 0 100-11 5.5 5.5 0 000 11z" clipRule="evenodd" />
-        </svg>
         Voir le devis
       </button>
 
