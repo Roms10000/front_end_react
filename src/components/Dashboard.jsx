@@ -108,16 +108,16 @@ const demandesAvecDevis = demandes.map((demande) => ({
 
 const isAdmin = userRoles.includes("ROLE_ADMIN");
 return(
-<>
+<div className="flex flex-col min-h-[130vh]">
 <Nav />
+ <main className="flex-grow">
     <div>
-        <span className=" border-b-1-black bg-white border border-gray-900 rounded-lg shadow-sm hover:bg-rose-200 ">
-        <div className="flex ml-30 underline">
-            <h5 className=" flex mb-2 text-2xl font-bold tracking-tight text-gray-900 group-hover:text-white great-vibes-regular">Suivie des demandes</h5>
+        <div className="flex ml-30 mt-10 underline">
+            <h5 className=" flex mb-10  text-2xl font-bold tracking-tight text-gray-900 group-hover:text-white great-vibes-regular">Suivie des demandes</h5>
             <svg xmlns="http://www.w3.org/2000/svg" width="128" height="45" viewBox="0 0 128 128">
             <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="96">🌸</text></svg>
         </div>
-            <table class=" ml-35 mt-10 mb-120 w-400 border border-gray-900 text-sm text-gray-900">
+            <table class=" ml-18  justify-center w-400 border rounded-lg border-gray-900 text-sm text-gray-900">
                 <thead class="bg-gray-200 text-gray-900">
                     <tr>
                         <th class="px-4 py-2 text-left">n° de demande</th>
@@ -162,10 +162,10 @@ return(
                 ))}
                 </tbody>
             </table>
-        </span>
     </div>
+</main>
 <Footer/>
-</>
-    )
+</div>
+    );
 }
 
