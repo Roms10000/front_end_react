@@ -10,6 +10,7 @@ export default function Dashboard ({Id}) {
 
     const [demandes, setDemandes] = useState([]);
     const [devis, setDevis] = useState([]);
+    const [userRoles, setUserRoles] = useState([]);
  
     const adaptDemandes = (data) => {
     //console.log("Data reçue dans adaptDemandes :", data);
@@ -41,19 +42,36 @@ const adaptDevis = (data) => {
   useEffect(() => {
 
 const userId = localStorage.getItem("id");
-if (!userId) return;
+const roleString = localStorage.getItem("roles")
+let roles = [];
+    try {
+      if (roleString && roleString !== "undefined") {
+        roles = JSON.parse(roleString);
+      }
+    } catch (e) {
+      console.error("Erreur lors de l'analyse des rôles depuis le localStorage :", e);
+    }
+    setUserRoles(roles);
+
+    if (!userId || roles.length === 0) {
+      console.log("Utilisateur non trouvable");
+      return;
+    }
 
  const fetchDemandes= async () => {
     try{
-        const res = await fetch(`http://localhost:8000/api/demandes?user=${userId}`);
-        if (!res.ok) throw new Error("Erreur fetch demandes");
-        const data = await res.json();
+        const isAdmin = roles.includes("ROLE_ADMIN");
+        const url = isAdmin
+          ? "http://localhost:8000/api/demandes"
+          : `http://localhost:8000/api/demandes?user=${userId}`;
 
-        //console.log(data.member);
-        setDemandes(adaptDemandes(data.member));
-      } catch (error) {
-        console.error(error);
-      }
+            const res = await fetch(url);
+            if (!res.ok) throw new Error("Erreur fetch demandes");
+            const data = await res.json();
+            setDemandes(adaptDemandes(data.member));
+        } catch (error) {
+            console.error(error);
+        }
   };
       fetchDemandes();
   }, []);
@@ -88,6 +106,7 @@ const demandesAvecDevis = demandes.map((demande) => ({
   devis: devisByDemande[demande.id] || null
 }));
 
+const isAdmin = userRoles.includes("ROLE_ADMIN");
 return(
 <>
 <Nav />
@@ -103,6 +122,12 @@ return(
                     <tr>
                         <th class="px-4 py-2 text-left">n° de demande</th>
                         <th class="px-4 py-2 text-left">Description de la demande</th>
+                        {isAdmin && (
+                            <>
+                                <th className="px-4 py-2 text-left">Nom</th>
+                                <th className="px-4 py-2 text-left">Prénom</th>
+                            </>
+                        )}
                         <th class="px-4 py-2 text-left">n° de devis</th>
                         <th class="px-4 py-2 text-left">Statut du devis</th>
                         <th class="px-4 py-2 text-left">Devis</th>
@@ -114,6 +139,12 @@ return(
                     <tr key={demande.id} className="border-t hover:bg-gray-50">
                         <td className="px-4 py-2">{demande.id}</td>
                         <td className="px-4 py-2">{demande.description}</td>
+                        {isAdmin && (
+                                <>
+                                    <td className="px-4 py-2">{demande.nom}</td>
+                                    <td className="px-4 py-2">{demande.prenom}</td>
+                                </>
+                            )}
                         <td className="px-4 py-2">{demande.devis ? demande.devis.numero : "--"}</td>
                         <td className="px-4 py-2">{demande.devis ? demande.devis.statut : "--"}</td>
                     <td className="px-4 py-2">

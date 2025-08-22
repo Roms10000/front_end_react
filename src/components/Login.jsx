@@ -35,7 +35,10 @@ export default function Login () {
           const fullName = `${data.user.prénom} ${data.user.nom}`;
           localStorage.setItem("authToken", data.token); 
           localStorage.setItem("id", data.id); 
-          localStorage.setItem("userName", fullName);      
+          localStorage.setItem("userName", fullName);     
+          localStorage.setItem("roles", JSON.stringify(data.user.roles)); // Convertir le tableau  roles en chaîne JSON
+
+        navigate("/"); 
 
           navigate("/");
         } else {
