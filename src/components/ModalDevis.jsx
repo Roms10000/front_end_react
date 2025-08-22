@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 // Composant de modal pour afficher un devis complet en se connectant à un backend Symfony (API Platform).
-export default function ModalDevis({devisId}) {
+export default function ModalDevis({devisId, clientNom, clientPrenom, handleStatutAccept, handleStatutCancel}) {
   const [showModal, setShowModal] = useState(false);
   const [devisData, setDevisData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const API_URL = `http://localhost:8000/api/devis/${devisId}`;
-  
 
   const developpeurData = {
     nom: "Pdev",
@@ -33,19 +31,15 @@ export default function ModalDevis({devisId}) {
         }
         
         const apiData = await response.json();
-        
-        console.log(apiData);
+
         if (apiData=== 0) {
           throw new Error("La collection de devis est vide.");
         }
 
 
         const firstDevis = apiData;
-        console.log("Données du premier devis :", firstDevis);
         const formattedData = {
           developpeur: developpeurData,
-          // L'objet client est maintenant extrait de l'API de devis
-          client: firstDevis.demande.client,
           devis: {
             numero: firstDevis.numero,
             date: firstDevis.date,
@@ -56,7 +50,6 @@ export default function ModalDevis({devisId}) {
 
         setDevisData(formattedData);
       } catch (e) {
-        console.error("Erreur lors de la récupération des données : ", e);
         setError(`Erreur lors de la récupération des données : ${e.message}. Veuillez vérifier que l'URL ${API_URL} est correcte et qu'elle renvoie une réponse JSON valide depuis votre serveur Symfony.`);
       } finally {
         setLoading(false);
@@ -124,12 +117,13 @@ const ModalContent = () => (
               <p>{data.developpeur?.adresse}</p>
               <p>{data.developpeur?.email}</p>
               <p>{data.developpeur?.telephone}</p>
-              <p className="mt-4">Date : <span className="font-bold">{data.devis?.date}</span></p>
+              <p className="mt-4">Date : <span className="font-bold">{data.devis?.date ? new Date(data.devis.date).toLocaleDateString('fr-FR') : ''}</span></p>
               <p>N° Devis : <span className="font-bold">{data.devis?.numero}</span></p>
             </div>
             <div className="text-right text-gray-600">
               <p className="font-semibold text-gray-900">Client</p>
-              <p>{data.client?.prenom} {data.client?.nom}</p>
+              <p>{clientNom} {clientPrenom}</p>
+              
             </div>
           </div>
           <div className="overflow-x-auto shadow-md rounded-lg mb-6">
@@ -160,7 +154,9 @@ const ModalContent = () => (
             </div>
           </div>
           <div className="mt-6 text-center text-gray-500 dark:text-gray-400">
+            <button onClick={handleStatutAccept} type="submit" className='inline-flex items-center justify-center text-white bg-red-200 hover:bg-red-300 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-200 shadow-md hover:shadow-lg'>Refuser</button>
             <p>Merci pour votre confiance. Veuillez nous contacter pour toute question.</p>
+            <button onClick={handleStatutCancel} type="submit" className='inline-flex items-center justify-center text-white bg-green-200 hover:bg-green-300 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-200 shadow-md hover:shadow-lg'>Accepter</button>
           </div>
         </div>
       </div>

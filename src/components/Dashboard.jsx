@@ -13,7 +13,10 @@ export default function Dashboard ({userId}) {
     console.log("Data reçue dans adaptDemandes :", data);
     return data.map((demande) => ({
       id: demande.id,
-      description: demande.description
+      description: demande.description,
+      nom: demande.nom,
+      prenom: demande.prenom
+
     }))
   }
 
@@ -37,11 +40,9 @@ const adaptDevis = (data) => {
 
  const fetchDemandes= async () => {
     try{
-        const res = await fetch("http://localhost:8000/api/demandes");
+        const res = await fetch(`http://localhost:8000/api/demandes`);
         if (!res.ok) throw new Error("Erreur fetch demandes");
         const data = await res.json();
-
-        console.log(data.member);
         setDemandes(adaptDemandes(data.member));
       } catch (error) {
         console.error(error);
@@ -54,11 +55,10 @@ useEffect(() => {
 
  const fetchDevis= async () => {
     try{
-        const res = await fetch(`http://localhost:8000/api/devis/${userId}`);
+        const res = await fetch(`http://localhost:8000/api/devis/`);
         if (!res.ok) throw new Error("Erreur fetch devis");
         const data = await res.json();
 
-        console.log(data.member);
         setDevis(adaptDevis(data.member));
       } catch (error) {
         console.error(error);
@@ -75,6 +75,7 @@ const devisByDemande = devis.reduce((acc, dv) => {
 
 // Ensuite, on enrichit les demandes
 const demandesAvecDevis = demandes.map((demande) => ({
+  
   ...demande,
   devis: devisByDemande[demande.id] || null
 }));
@@ -109,7 +110,7 @@ return(
                         <td className="px-4 py-2">{demande.devis ? demande.devis.statut : "--"}</td>
                     <td className="px-4 py-2">
                     {demande.devis && demande.devis.id ? (
-                        <ModalDevis devisId={demande.devis.id} />
+                        <ModalDevis devisId={demande.devis.id} clientNom={demande.nom} clientPrenom={demande.prenom} />
                     ) : (
                         "--"
                     )}
