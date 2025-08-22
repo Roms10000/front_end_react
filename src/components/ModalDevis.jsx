@@ -7,7 +7,9 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, handleStat
   const [devisData, setDevisData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   const API_URL = `http://localhost:8000/api/devis/${devisId}`;
+  
 
   const developpeurData = {
     nom: "Pdev",
@@ -39,9 +41,11 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, handleStat
 
 
         const firstDevis = apiData;
-        //console.log("Données du premier devis :", firstDevis);
+        console.log("Données du premier devis :", firstDevis);
         const formattedData = {
           developpeur: developpeurData,
+          // L'objet client est maintenant extrait de l'API de devis
+          client: firstDevis.demande.client,
           devis: {
             numero: firstDevis.numero,
             date: firstDevis.date,
@@ -52,7 +56,7 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, handleStat
 
         setDevisData(formattedData);
       } catch (e) {
-        //console.error("Erreur lors de la récupération des données : ", e);
+        console.error("Erreur lors de la récupération des données : ", e);
         setError(`Erreur lors de la récupération des données : ${e.message}. Veuillez vérifier que l'URL ${API_URL} est correcte et qu'elle renvoie une réponse JSON valide depuis votre serveur Symfony.`);
       } finally {
         setLoading(false);
@@ -105,7 +109,7 @@ const ModalContent = () => (
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Devis</h3>
             <button
               type="button"
-              className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+              className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center cursor-pointer"
               onClick={handleToggleModal}
             >
               <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -125,8 +129,8 @@ const ModalContent = () => (
             </div>
             <div className="text-right text-gray-600">
               <p className="font-semibold text-gray-900">Client</p>
+              <p>{data.client?.prenom} {data.client?.nom}</p>
               <p>{clientNom} {clientPrenom}</p>
-              
             </div>
           </div>
           <div className="overflow-x-auto shadow-md rounded-lg mb-6">
@@ -157,7 +161,7 @@ const ModalContent = () => (
             </div>
           </div>
           <div className="mt-6 text-center text-gray-500 dark:text-gray-400">
-            <button onClick={handleStatutAccept} type="submit" className='inline-flex items-center justify-center text-white bg-red-200 hover:bg-red-300 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-200 shadow-md hover:shadow-lg'>Refuser</button>
+            <button onClick={handleStatutAccept} type="submit" className='inline-flex items-center justify-center text-white bg-red-200 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-200 shadow-md hover:shadow-lg'>Refuser</button>
             <p>Merci pour votre confiance. Veuillez nous contacter pour toute question.</p>
             <button onClick={handleStatutCancel} type="submit" className='inline-flex items-center justify-center text-white bg-green-200 hover:bg-green-300 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-200 shadow-md hover:shadow-lg'>Accepter</button>
           </div>
@@ -170,7 +174,7 @@ const ModalContent = () => (
     <>
       <button
         onClick={handleToggleModal}
-        className="inline-flex items-center justify-center text-white bg-rose-200 hover:bg-rose-300 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-200 shadow-md hover:shadow-lg"
+        className="inline-flex items-center justify-center text-white bg-rose-200 hover:bg-rose-300 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-200 shadow-md hover:shadow-lg cursor-pointer"
       >
         Voir le devis
       </button>
