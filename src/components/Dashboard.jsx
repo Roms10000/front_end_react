@@ -4,13 +4,15 @@ import ModalDevis from "./ModalDevis";
 import { button } from "@material-tailwind/react";
 import React, { useState, useEffect } from "react";
 
-export default function Dashboard ({userId}) {
+export default function Dashboard ({Id}) {
+
+
 
     const [demandes, setDemandes] = useState([]);
-     const [devis, setDevis] = useState([]);
+    const [devis, setDevis] = useState([]);
  
     const adaptDemandes = (data) => {
-    console.log("Data reçue dans adaptDemandes :", data);
+    //console.log("Data reçue dans adaptDemandes :", data);
     return data.map((demande) => ({
       id: demande.id,
       description: demande.description
@@ -18,7 +20,7 @@ export default function Dashboard ({userId}) {
   }
 
 const adaptDevis = (data) => {
-  console.log("Data reçue dans adaptDevis :", data);
+  //console.log("Data reçue dans adaptDevis :", data);
   return data.map((devi) => {
     // extraire l'ID à partir de l'URL de la demande (ex: ".../demandes/3")
     const demandeId = devi.demande ? parseInt(devi.demande.split("/").pop()) : null;
@@ -35,13 +37,16 @@ const adaptDevis = (data) => {
 
   useEffect(() => {
 
+const userId = localStorage.getItem("id");
+if (!userId) return;
+
  const fetchDemandes= async () => {
     try{
-        const res = await fetch("http://localhost:8000/api/demandes");
+        const res = await fetch(`http://localhost:8000/api/demandes?user=${userId}`);
         if (!res.ok) throw new Error("Erreur fetch demandes");
         const data = await res.json();
 
-        console.log(data.member);
+        //console.log(data.member);
         setDemandes(adaptDemandes(data.member));
       } catch (error) {
         console.error(error);
@@ -54,11 +59,11 @@ useEffect(() => {
 
  const fetchDevis= async () => {
     try{
-        const res = await fetch(`http://localhost:8000/api/devis/${userId}`);
+        const res = await fetch("http://localhost:8000/api/devis/");
         if (!res.ok) throw new Error("Erreur fetch devis");
         const data = await res.json();
 
-        console.log(data.member);
+       // console.log(data.member);
         setDevis(adaptDevis(data.member));
       } catch (error) {
         console.error(error);
