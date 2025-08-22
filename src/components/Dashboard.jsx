@@ -15,7 +15,10 @@ export default function Dashboard ({Id}) {
     //console.log("Data reçue dans adaptDemandes :", data);
     return data.map((demande) => ({
       id: demande.id,
-      description: demande.description
+      description: demande.description,
+      nom: demande.nom,
+      prenom: demande.prenom
+
     }))
   }
 
@@ -80,6 +83,7 @@ const devisByDemande = devis.reduce((acc, dv) => {
 
 // Ensuite, on enrichit les demandes
 const demandesAvecDevis = demandes.map((demande) => ({
+  
   ...demande,
   devis: devisByDemande[demande.id] || null
 }));
@@ -114,7 +118,7 @@ return(
                         <td className="px-4 py-2">{demande.devis ? demande.devis.statut : "--"}</td>
                     <td className="px-4 py-2">
                     {demande.devis && demande.devis.id ? (
-                        <ModalDevis devisId={demande.devis.id} />
+                        <ModalDevis devisId={demande.devis.id} clientNom={demande.nom} clientPrenom={demande.prenom} />
                     ) : (
                         "--"
                     )}
