@@ -33,15 +33,14 @@ export default function ModalDevis({devisId}) {
         }
         
         const apiData = await response.json();
-        
-        console.log(apiData);
+    
         if (apiData=== 0) {
           throw new Error("La collection de devis est vide.");
         }
 
 
         const firstDevis = apiData;
-        console.log("Données du premier devis :", firstDevis);
+        //console.log("Données du premier devis :", firstDevis);
         const formattedData = {
           developpeur: developpeurData,
           // L'objet client est maintenant extrait de l'API de devis
@@ -56,7 +55,7 @@ export default function ModalDevis({devisId}) {
 
         setDevisData(formattedData);
       } catch (e) {
-        console.error("Erreur lors de la récupération des données : ", e);
+        //console.error("Erreur lors de la récupération des données : ", e);
         setError(`Erreur lors de la récupération des données : ${e.message}. Veuillez vérifier que l'URL ${API_URL} est correcte et qu'elle renvoie une réponse JSON valide depuis votre serveur Symfony.`);
       } finally {
         setLoading(false);
