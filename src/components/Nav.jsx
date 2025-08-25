@@ -14,7 +14,7 @@ export default function Nav() {
     
     const token = localStorage.getItem("authToken");
     const storedUserName = localStorage.getItem("userName");
-    const storedUserId = localStorage.getItem("userId");
+    
 
     // Met à jour l'état si un token et un nom sont présents
     setIsLoggedIn(!!token);
@@ -51,18 +51,18 @@ export default function Nav() {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer " + token
+                        "Authorization": `Bearer ${token}`
                     },
                 });
-          // Le finally block garantit que les actions de déconnexion côté client
-          // s'exécutent, même en cas d'échec de l'appel API.
+          
         } catch (error) {
           console.error("Erreur lors du logout :", error);
         } 
       }
+      // Le finally block garantit que les actions de déconnexion côté client
+          // s'exécutent, même en cas d'échec de l'appel API.
       // Nettoyer le localStorage et mettre à jour l'état
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("userName");
+      localStorage.clear();
 
       setIsLoggedIn(false);
       setUserName('');
