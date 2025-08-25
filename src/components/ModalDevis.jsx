@@ -48,7 +48,7 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, handleStat
           client: firstDevis.demande.client,
           devis: {
             numero: firstDevis.numero,
-            date: firstDevis.date,
+            date: firstDevis.date_devis,
             prestations: firstDevis.devisPrestations,
             total: firstDevis.total,
           },
@@ -124,7 +124,7 @@ const ModalContent = () => (
               <p>{data.developpeur?.adresse}</p>
               <p>{data.developpeur?.email}</p>
               <p>{data.developpeur?.telephone}</p>
-              <p className="mt-4">Date : <span className="font-bold">{data.devis?.date ? new Date(data.devis.date).toLocaleDateString('fr-FR') : ''}</span></p>
+              <p className="mt-4">Date : <span className="font-bold">{data.devis?.date_devis ? new Date(data.devis.date_devis).toLocaleDateString('fr-FR') : ''}</span></p>
               <p>N° Devis : <span className="font-bold">{data.devis?.numero}</span></p>
             </div>
             <div className="text-right text-gray-600">
