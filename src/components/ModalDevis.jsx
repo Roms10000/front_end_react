@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 // Composant de modal pour afficher un devis complet en se connectant à un backend Symfony (API Platform).
-export default function ModalDevis({devisId, clientNom, clientPrenom, handleStatutAccept, handleStatutCancel}) {
+export default function ModalDevis({devisId, clientNom, clientPrenom,}) {
   const [showModal, setShowModal] = useState(false);
   const [devisData, setDevisData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [actionDone, setActionDone] = useState(false);
 
   const API_URL = `http://localhost:8000/api/devis/${devisId}`;
   
@@ -34,14 +35,12 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, handleStat
         
         const apiData = await response.json();
         
-        console.log(apiData);
         if (apiData=== 0) {
           throw new Error("La collection de devis est vide.");
         }
 
 
         const firstDevis = apiData;
-        console.log("Données du premier devis :", firstDevis);
         const formattedData = {
           developpeur: developpeurData,
           // L'objet client est maintenant extrait de l'API de devis
@@ -51,6 +50,7 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, handleStat
             date: firstDevis.date_devis,
             prestations: firstDevis.devisPrestations,
             total: firstDevis.total,
+            statut: firstDevis.statut
           },
         };
 
@@ -70,6 +70,71 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, handleStat
   const handleToggleModal = () => {
     setShowModal(!showModal);
   };
+  
+  const handleStatutAccept = async (e) => {
+    e.preventDefault();
+     try {
+      const response = await fetch(`http://localhost:8000/api/devis/${devisId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/merge-patch+json",
+        "Accept": "application/ld+json",
+      },
+      body: JSON.stringify({
+        statut: "Accepter",
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erreur API : ${response.status}`);
+    }
+
+    alert("Le devis a été accepté et son statut mis à jour !");
+    setActionDone(true); 
+    setShowModal(false);
+
+    setTimeout(() => {
+    window.location.reload();
+    }, 1000);
+
+  } catch (err) {
+    console.error("Erreur lors de la mise à jour du statut :", err);
+    alert("Impossible de mettre à jour le statut du devis.");
+  }
+};
+
+ const handleStatutCancel = async (e) => {
+    e.preventDefault();
+     try {
+      const response = await fetch(`http://localhost:8000/api/devis/${devisId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/merge-patch+json",
+        "Accept": "application/ld+json",
+      },
+      body: JSON.stringify({
+        statut: "Refuser",
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erreur API : ${response.status}`);
+    }
+
+    alert("Le devis a été refusé et son statut mis à jour !");
+    setActionDone(true);
+    setShowModal(false);
+
+
+    setTimeout(() => {
+    window.location.reload();
+    }, 1000);
+
+  } catch (err) {
+    console.error("Erreur lors de la mise à jour du statut :", err);
+    alert("Impossible de mettre à jour le statut du devis.");
+  }
+};
 
   if (loading) {
     return (
@@ -160,10 +225,11 @@ const ModalContent = () => (
           </div>
           <div className="grid grid-cols-2 mt-5">
             <div className='flex'>
-              <button onClick={handleStatutAccept} type="submit" className=' text-white bg-red-400 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-md hover:shadow-lg cursor-pointer'>Refuser</button>
+              <button onClick={handleStatutCancel} disabled={data.devis.statut === "Refuser" || data.devis.statut === "Accepter"} type="submit" className={`text-white bg-red-400 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-md hover:shadow-lg cursor-pointer ${data.devis.statut === "Refuser" || data.devis.statut === "Accepter" ? "opacity-50 cursor-not-allowed"
+      : ""}`}>Refuser</button>
             </div>
             <div className='flex justify-end'>
-              <button onClick={handleStatutCancel} type="submit" className=' text-white bg-green-300 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-green-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-md hover:shadow-lg cursor-pointer'>Accepter</button>
+              <button onClick={handleStatutAccept} disabled={data.devis.statut === "Refuser" || data.devis.statut === "Accepter"} type="submit" className={` text-white bg-green-300 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-green-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-md hover:shadow-lg cursor-pointer  ${data.devis.statut === "Refuser" || devisData.statut === "Accepter" ? "opacity-50 cursor-not-allowed": ""}`}>Accepter</button>
             </div>
           </div>
             <p className="mt-6 text-center text-gray-500 dark:text-gray-400">Merci pour votre confiance. Veuillez nous contacter pour toute question.</p>
