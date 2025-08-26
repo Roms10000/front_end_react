@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router";
 import Nav from "./Nav";
+import Dashboard from "./Dashboard";
 
 export default function RequestQuote() {
   const [nom, setNom] = useState("");
@@ -9,6 +10,7 @@ export default function RequestQuote() {
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
+  const navigate = useNavigate();
 
   const adaptCategories = (data) => {
     console.log("Data reçue dans adaptCategories :", data);
@@ -17,9 +19,6 @@ export default function RequestQuote() {
       nom: cat.nom
     }))
   }
-
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     // const fetchUser = async () => {
@@ -79,7 +78,7 @@ export default function RequestQuote() {
       const data = await res.json();
       console.log("Réponse API:", data);
 
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Erreur fetch:", error);
       alert("Impossible de créer la demande !");
@@ -167,7 +166,7 @@ export default function RequestQuote() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-rose-200 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-rose-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-300 cursor-pointer"
+                className="flex w-full justify-center rounded-md bg-rose-200 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-rose-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-300 cursor-pointer "
               >
                 Envoyer la demande
               </button>
