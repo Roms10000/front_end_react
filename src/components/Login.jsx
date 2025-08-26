@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
+import ForgotPassword from "./ForgotPassword";
 
 
 export default function Login () {
@@ -93,9 +94,9 @@ export default function Login () {
                   Mots de passe
                 </label>
                 <div className="text-sm">
-                  <a href="http://localhost:5173/forgotPassword" className="font-semibold text-rose-200 hover:text-rose-300">
+                  <Link to="/forgotPassword" className="font-semibold text-rose-200 hover:text-rose-300">
                     Mots de passe oublié ?
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="mt-2">
