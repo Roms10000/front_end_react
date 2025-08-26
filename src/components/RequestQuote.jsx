@@ -87,7 +87,7 @@ export default function RequestQuote() {
   };
     return (
     <>
-      <Nav></Nav>
+      <Nav />
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <Link to="/">
@@ -167,7 +167,7 @@ export default function RequestQuote() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-rose-200 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-rose-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-300"
+                className="flex w-full justify-center rounded-md bg-rose-200 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-rose-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-300 cursor-pointer"
               >
                 Envoyer la demande
               </button>

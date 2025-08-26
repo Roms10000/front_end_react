@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 // Composant de modal pour afficher un devis complet en se connectant à un backend Symfony (API Platform).
-export default function ModalDevis({devisId}) {
+export default function ModalDevis({devisId, clientNom, clientPrenom, handleStatutAccept, handleStatutCancel}) {
   const [showModal, setShowModal] = useState(false);
   const [devisData, setDevisData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -48,7 +48,7 @@ export default function ModalDevis({devisId}) {
           client: firstDevis.demande.client,
           devis: {
             numero: firstDevis.numero,
-            date: firstDevis.date,
+            date: firstDevis.date_devis,
             prestations: firstDevis.devisPrestations,
             total: firstDevis.total,
           },
@@ -109,7 +109,7 @@ const ModalContent = () => (
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Devis</h3>
             <button
               type="button"
-              className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+              className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center cursor-pointer"
               onClick={handleToggleModal}
             >
               <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -124,17 +124,18 @@ const ModalContent = () => (
               <p>{data.developpeur?.adresse}</p>
               <p>{data.developpeur?.email}</p>
               <p>{data.developpeur?.telephone}</p>
-              <p className="mt-4">Date : <span className="font-bold">{data.devis?.date}</span></p>
+              <p className="mt-4">Date : <span className="font-bold">{data.devis?.date_devis ? new Date(data.devis.date_devis).toLocaleDateString('fr-FR') : ''}</span></p>
               <p>N° Devis : <span className="font-bold">{data.devis?.numero}</span></p>
             </div>
             <div className="text-right text-gray-600">
               <p className="font-semibold text-gray-900">Client</p>
               <p>{data.client?.prenom} {data.client?.nom}</p>
+              <p>{clientNom} {clientPrenom}</p>
             </div>
           </div>
           <div className="overflow-x-auto shadow-md rounded-lg mb-6">
             <table className="w-full text-sm text-left text-gray-500 ">
-              <thead className="text-xs text-gray-700 uppercase bg-rose-200 hover:bg-rose-300">
+              <thead className="text-xs text-gray-900 uppercase bg-rose-200 ">
                 <tr>
                   <th scope="col" className="px-6 py-3">Prestation</th>
                   <th scope="col" className="px-6 py-3">Quantité</th>
@@ -144,8 +145,8 @@ const ModalContent = () => (
               </thead>
               <tbody>
                 {data.devis.prestations.map((prestationItem, index) => (
-                  <tr key={index} className="bg-white border-b hover:bg-gray-50">
-                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{prestationItem.prestation.nom}</td>
+                  <tr key={index}>
+                    <td className="px-6 py-4">{prestationItem.prestation.nom}</td>
                     <td className="px-6 py-4">{prestationItem.quantity}</td>
                     <td className="px-6 py-4">{prestationItem.prestation.pu ? parseFloat(prestationItem.prestation.pu).toFixed(2) : '0.00'} €</td>
                     <td className="px-6 py-4">{prestationItem.soustotal ? parseFloat(prestationItem.soustotal).toFixed(2) : '0.00'} €</td>
@@ -154,14 +155,18 @@ const ModalContent = () => (
               </tbody>
             </table>
           </div>
-          <div className="flex justify-end p-4 border-t border-gray-200 dark:border-gray-600">
             <div className="text-right">
               <span className="text-lg font-bold text-gray-900 dark:text-white">Total : {data.devis?.total ? parseFloat(data.devis.total).toFixed(2) : '0.00'} €</span>
+          </div>
+          <div className="grid grid-cols-2 mt-5">
+            <div className='flex'>
+              <button onClick={handleStatutAccept} type="submit" className=' text-white bg-red-400 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-md hover:shadow-lg cursor-pointer'>Refuser</button>
+            </div>
+            <div className='flex justify-end'>
+              <button onClick={handleStatutCancel} type="submit" className=' text-white bg-green-300 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-green-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-md hover:shadow-lg cursor-pointer'>Accepter</button>
             </div>
           </div>
-          <div className="mt-6 text-center text-gray-500 dark:text-gray-400">
-            <p>Merci pour votre confiance. Veuillez nous contacter pour toute question.</p>
-          </div>
+            <p className="mt-6 text-center text-gray-500 dark:text-gray-400">Merci pour votre confiance. Veuillez nous contacter pour toute question.</p>
         </div>
       </div>
     </div>
@@ -171,7 +176,7 @@ const ModalContent = () => (
     <>
       <button
         onClick={handleToggleModal}
-        className="inline-flex items-center justify-center text-white bg-rose-200 hover:bg-rose-300 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-200 shadow-md hover:shadow-lg"
+        className="inline-flex items-center justify-center text-white bg-rose-200 hover:bg-rose-300 focus:ring-4 focus:outline-none focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-colors duration-200 shadow-md hover:shadow-lg cursor-pointer"
       >
         Voir le devis
       </button>

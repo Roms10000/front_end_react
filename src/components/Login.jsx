@@ -31,23 +31,27 @@ export default function Login () {
         console.log("Réponse API:", data);
 
         // Stocker le token ET le nom de l'utilisateur et 'id' dans le localStorage
-        if (data.token && data.user && data.user.prénom && data.user.nom) {
+        if (data.token && data.id && data.user && data.user.roles) {
           const fullName = `${data.user.prénom} ${data.user.nom}`;
           localStorage.setItem("authToken", data.token); 
-          localStorage.setItem("id", data.id);       
-          localStorage.setItem("userName", fullName);      
+          localStorage.setItem("id", data.id); 
+          localStorage.setItem("userName", fullName);     
+          localStorage.setItem("roles", JSON.stringify(data.user.roles)); // Convertir le tableau  roles en chaîne JSON
+        
 
           navigate("/");
-        } else {
+        } 
+        
+        else {
           // Gère les cas où le token ou le nom d'utilisateur ou l'ID manquent dans la réponse, bien que le res.ok soit true
           throw new Error("Token ou nom utilisateur non reçus");
         }
-
-          
       } catch (err) {
         console.error("Erreur fetch:", err);
         setError("Impossible de se connecter !");
       }
+        console.log('data.user.roles');
+
     };
     return (
     <>
@@ -109,7 +113,7 @@ export default function Login () {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-rose-200 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-rose-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-300"
+                className="flex w-full justify-center rounded-md bg-rose-200 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-rose-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-300 cursor-pointer"
               >
                 Se connecter
               </button>
