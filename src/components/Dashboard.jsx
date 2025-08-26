@@ -12,33 +12,6 @@ export default function Dashboard ({Id}) {
     const [devis, setDevis] = useState([]);
     const [userRoles, setUserRoles] = useState([]);
     const [factures, setFactures] = useState([]);
- 
-    const adaptDemandes = (data) => {
-    //console.log("Data reçue dans adaptDemandes :", data);
-    return data.map((demande) => ({
-      id: demande.id,
-      description: demande.description,
-      nom: demande.nom,
-      prenom: demande.prenom
-
-    }))
-  }
-
-const adaptDevis = (data) => {
-  //console.log("Data reçue dans adaptDevis :", data);
-  return data.map((devi) => {
-    // extraire l'ID à partir de l'URL de la demande (ex: ".../demandes/3")
-    const demandeId = devi.demande ? parseInt(devi.demande.split("/").pop()) : null;
-
-    return {
-      id: devi.id,
-      numero: devi.numero,
-      statut: devi.statut,
-      demandeId: demandeId,
-      facture: devi.facture
-    };
-  });
-};
 
   useEffect(() => {
 
@@ -58,18 +31,20 @@ let roles = [];
       console.log("Utilisateur non trouvable");
       return;
     }
-
+    
  const fetchDemandes= async () => {
     try{
         const isAdmin = roles.includes("ROLE_ADMIN");
+        
         const url = isAdmin
           ? "http://localhost:8000/api/demandes"
-          : `http://localhost:8000/api/demandes?user=${userId}`;
-
+          : `http://localhost:8000/api/backoffice/${userId}`;
+        
             const res = await fetch(url);
             if (!res.ok) throw new Error("Erreur fetch demandes");
             const data = await res.json();
-            setDemandes(adaptDemandes(data.member));
+            
+            setDemandes(data);
         } catch (error) {
             console.error(error);
         }
@@ -77,48 +52,8 @@ let roles = [];
       fetchDemandes();
   }, []);
 
-useEffect(() => {
 
- const fetchDevis= async () => {
-    try{
-        const res = await fetch("http://localhost:8000/api/devis/");
-        if (!res.ok) throw new Error("Erreur fetch devis");
-        const data = await res.json();
 
-        setDevis(adaptDevis(data.member));
-      } catch (error) {
-        console.error(error);
-      }
-  };
-      fetchDevis();
-  }, []);
-
-  const fetchFactures= async () => {
-    try {
-      const res = await fetch("http://localhost:8000/api/factures/");
-      if (!res.ok) throw new Error("Erreur fetch facture");
-      const data = await res.json();
-
-      setFactures(data.member);
-    } catch (error) {
-      console.error(error);
-    }
-    }
-    fetchFactures();
-    console.log(factures);
-
-// On crée un dictionnaire { demandeId: devis }
-const devisByDemande = devis.reduce((acc, dv) => {
-  acc[dv.demandeId] = dv;
-  return acc;
-}, {});
-
-// Ensuite, on enrichit les demandes
-const demandesAvecDevis = demandes.map((demande) => ({
-  
-  ...demande,
-  devis: devisByDemande[demande.id] || null
-}));
 const isAdmin = userRoles.includes("ROLE_ADMIN");
 return(
 <div className="flex flex-col min-h-[130vh]">
@@ -148,7 +83,7 @@ return(
                     </tr>
                 </thead>
                 <tbody>
-                {demandesAvecDevis.map((demande) => (
+                {demandes.map((demande) => (
                     <tr key={demande.id} className="border-t hover:bg-gray-50">
                         <td className="px-4 py-2">{demande.id}</td>
                         <td className="px-4 py-2">{demande.description}</td>
@@ -158,34 +93,26 @@ return(
                                     <td className="px-4 py-2">{demande.prenom}</td>
                                 </>
                             )}
-                        <td className="px-4 py-2">{demande.devis ? demande.devis.numero : "--"}</td>
-                        <td className="px-4 py-2">{demande.devis ? demande.devis.statut : "--"}</td>
+                        <td className="px-4 py-2">{demande.numero!=null ? demande.numero : "--"}</td>
+                        <td className="px-4 py-2">{demande.statut!=null ? demande.statut : "--"}</td>
                     <td className="px-4 py-2">
-                    {demande.devis && demande.devis.id ? (
-                        <ModalDevis devisId={demande.devis.id} clientNom={demande.nom} clientPrenom={demande.prenom} />
+                    {demande.devis_id!=null ? (
+                        <ModalDevis devisId={demande.devis_id} clientNom={demande.nom} clientPrenom={demande.prenom} />
                     ) : (
                         "--"
                     )}
                     </td>
                         <td className="px-4 py-2">
-                        {factures.length > 0 ? (
-                          factures.map((facture) => {
-                            // comparer les IDs
-                            if (demande.devis && facture.devis && demande.devis.id === facture.devis.id) {
-                              return (
+                        {demande.facture!=null ? (
                                 <a
-                                  key={facture.id}
-                                  href={`http://localhost:8000${facture.facture}`} // chemin vers le PDF
+                                  key={demande.facture}
+                                  href={`http://localhost:8000${demande.facture}`} // chemin vers le PDF
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-rose-200 underline"
                                 >
-                                  Télécharger la facture
+                                  Voir la facture
                                 </a>
-                              );
-                            }
-                            return null;
-                          })
                         ) : (
                           "--"
                         )}
