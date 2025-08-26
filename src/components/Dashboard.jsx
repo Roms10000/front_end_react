@@ -11,6 +11,7 @@ export default function Dashboard ({Id}) {
     const [demandes, setDemandes] = useState([]);
     const [devis, setDevis] = useState([]);
     const [userRoles, setUserRoles] = useState([]);
+    const [factures, setFactures] = useState([]);
  
     const adaptDemandes = (data) => {
     //console.log("Data reçue dans adaptDemandes :", data);
@@ -84,7 +85,6 @@ useEffect(() => {
         if (!res.ok) throw new Error("Erreur fetch devis");
         const data = await res.json();
 
-       // console.log(data.member);
         setDevis(adaptDevis(data.member));
       } catch (error) {
         console.error(error);
@@ -92,6 +92,20 @@ useEffect(() => {
   };
       fetchDevis();
   }, []);
+
+  const fetchFactures= async () => {
+    try {
+      const res = await fetch("http://localhost:8000/api/factures/");
+      if (!res.ok) throw new Error("Erreur fetch facture");
+      const data = await res.json();
+
+      setFactures(data.member);
+    } catch (error) {
+      console.error(error);
+    }
+    }
+    fetchFactures();
+    console.log(factures);
 
 // On crée un dictionnaire { demandeId: devis }
 const devisByDemande = devis.reduce((acc, dv) => {
@@ -105,7 +119,6 @@ const demandesAvecDevis = demandes.map((demande) => ({
   ...demande,
   devis: devisByDemande[demande.id] || null
 }));
-
 const isAdmin = userRoles.includes("ROLE_ADMIN");
 return(
 <div className="flex flex-col min-h-[130vh]">
@@ -115,23 +128,23 @@ return(
         <div className="flex ml-30 mt-10 underline">
             <h5 className=" flex mb-10  text-2xl font-bold tracking-tight text-gray-900 group-hover:text-white great-vibes-regular">Suivie des demandes</h5>
             <svg xmlns="http://www.w3.org/2000/svg" width="128" height="45" viewBox="0 0 128 128">
-            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="96">🌸</text></svg>
+            <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fontSize="96">🌸</text></svg>
         </div>
-            <table class=" ml-18  justify-center w-400 border rounded-lg border-gray-900 text-sm text-gray-900">
-                <thead class="bg-gray-200 text-gray-900">
+            <table className=" ml-18  justify-center w-400 border rounded-lg border-gray-900 text-sm text-gray-900">
+                <thead className="bg-gray-200 text-gray-900">
                     <tr>
-                        <th class="px-4 py-2 text-left">n° de demande</th>
-                        <th class="px-4 py-2 text-left">Description de la demande</th>
+                        <th className="px-4 py-2 text-left">n° de demande</th>
+                        <th className="px-4 py-2 text-left">Description de la demande</th>
                         {isAdmin && (
                             <>
                                 <th className="px-4 py-2 text-left">Nom</th>
                                 <th className="px-4 py-2 text-left">Prénom</th>
                             </>
                         )}
-                        <th class="px-4 py-2 text-left">n° de devis</th>
-                        <th class="px-4 py-2 text-left">Statut du devis</th>
-                        <th class="px-4 py-2 text-left">Devis</th>
-                        <th class="px-4 py-2 text-left">Facture</th>
+                        <th className="px-4 py-2 text-left">n° de devis</th>
+                        <th className="px-4 py-2 text-left">Statut du devis</th>
+                        <th className="px-4 py-2 text-left">Devis</th>
+                        <th className="px-4 py-2 text-left">Facture</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -155,8 +168,27 @@ return(
                     )}
                     </td>
                         <td className="px-4 py-2">
-                        {demande.devis && demande.devis.facture ? (
-                        <a href={demande.devis.facture} target="_blank" rel="noopener noreferrer" className="text-rose-200 underline">Voir facture</a>) : "--"}
+                        {factures.length > 0 ? (
+                          factures.map((facture) => {
+                            // comparer les IDs
+                            if (demande.devis && facture.devis && demande.devis.id === facture.devis.id) {
+                              return (
+                                <a
+                                  key={facture.id}
+                                  href={`http://localhost:8000${facture.facture}`} // chemin vers le PDF
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-rose-200 underline"
+                                >
+                                  Télécharger la facture
+                                </a>
+                              );
+                            }
+                            return null;
+                          })
+                        ) : (
+                          "--"
+                        )}
                         </td>
                     </tr>
                 ))}
