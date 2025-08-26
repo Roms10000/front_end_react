@@ -9,9 +9,14 @@ const [isOpen, setIsOpen] = useState(false);
   Avis 1 
     </button>
 {isOpen && (
-    <div id="default-modal" tabIndex="-1" aria-hidden="true" className="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div className="relative p-4 w-full max-w-2xl max-h-full">
-            <div className="relative bg-white rounded-lg shadow-sm">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          onClick={() => setIsOpen(false)} // Ferme si on clique en dehors
+        >
+          <div
+            className="relative bg-white rounded-lg shadow-lg w-full max-w-2xl"
+            onClick={(e) => e.stopPropagation()} // Empêche la fermeture si on clique dans la modale
+          >
                 <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200">
                     <div className="flex justify-center">
                     <h3 className="text-xl font-semibold text-gray-900">
@@ -28,7 +33,6 @@ const [isOpen, setIsOpen] = useState(false);
             <img src="/img/message.PNG"   alt="message" className="w-full h-auto max-h-[70vh] object-contain rounded-lg"/>
             </div>
         </div>
-    </div>
     )}
 </>
     )
