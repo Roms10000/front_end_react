@@ -9,9 +9,8 @@ export default function Dashboard ({Id}) {
 
 
     const [demandes, setDemandes] = useState([]);
-    const [devis, setDevis] = useState([]);
     const [userRoles, setUserRoles] = useState([]);
-    const [factures, setFactures] = useState([]);
+
 
   useEffect(() => {
 
