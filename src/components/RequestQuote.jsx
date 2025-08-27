@@ -12,6 +12,8 @@ export default function RequestQuote() {
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
+
+
   const adaptCategories = (data) => {
     console.log("Data reçue dans adaptCategories :", data);
     return data.map((cat) => ({
@@ -21,20 +23,13 @@ export default function RequestQuote() {
   }
 
   useEffect(() => {
-    // const fetchUser = async () => {
-    //   try {
-    //     const res = await fetch("http://localhost:8000/api/me", {
-    //       headers: {
-    //         "Authorization": "Bearer " + localStorage.getItem("token"),
-    //       },
-    //     });
-    //     if (!res.ok) throw new Error("Impossible de récupérer l'utilisateur");
-    //     const data = await res.json();
-    //     setUserId(data.id); // ou data.user_id selon ton API
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
+    const userId = localStorage.getItem("id");
+    if (!userId) {
+      console.log("Utilisateur non trouvable");
+      navigate("/login");
+      return;
+  }
+  
     const fetchCategories = async () => {
       try {
         const res = await fetch("http://localhost:8000/api/categories");

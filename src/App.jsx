@@ -9,6 +9,7 @@ import ModalDevis from "./components/ModalDevis";
 import Footer from "./components/Footer";
 import Dashboard from "./components/Dashboard";
 import RequestQuote from "./components/RequestQuote";
+
 import { Route,Routes } from "react-router"
 import './App.css'
 
@@ -17,19 +18,14 @@ export default function App() {
 
   return (
     <>
-       <Routes>
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
-        <Route path="/nav" element={<Nav />} />
-        <Route path="/modal" element={<Modal />} />
-        <Route path="/footer" element={<Footer />} />
-        <Route path="/modal1" element={<Modal1 />} />
         <Route path="/requestQuote" element={<RequestQuote/>} />
-        <Route path="/dashboard" element={<Dashboard/>} />
-        <Route path="/modalDevis" element={<ModalDevis />} />
-      </Routes>     
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>    
     </>
   )
 }

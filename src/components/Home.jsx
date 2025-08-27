@@ -12,9 +12,19 @@ export default function Home () {
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 const navigate = useNavigate();
 
+useEffect(() => {
+  const token = localStorage.getItem("token"); // ou id, roles, etc.
+  if (token) {
+    setIsLoggedIn(true);
+  }
+}, []);
+
 const handleClick = async (e) => {
 e.preventDefault();
-navigate("/requestQuote");
+
+  navigate("/requestQuote");
+
+
 }
   return (
     <div className="flex flex-col min-h-screen">
