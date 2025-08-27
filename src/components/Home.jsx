@@ -21,7 +21,7 @@ navigate("/requestQuote");
 
       {/* Contenu principal */}
       <main className="flex-grow">
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 max-lg:grid-cols-1 ">
           {/* Partie gauche */}
           <div className="ml-5 text-wrap">
             <h1 className="mt-30 font-bold text-5xl flex justify-center great-vibes-regular">
@@ -61,7 +61,7 @@ navigate("/requestQuote");
           </div>
 
           {/* Partie droite */}
-          <span className="group max-w-sm p-6 ml-70 mt-40 border-b-1-black bg-white border border-gray-900 rounded-lg shadow-sm hover:bg-rose-200">
+          <span className="group max-w-sm p-6 xl:ml-70 lg:ml-30 md:ml-70 sm:ml-35 mt-40 border-b-1-black bg-white border border-gray-900 rounded-lg shadow-sm hover:bg-rose-200 ">
             <div className="flex justify-center ml-30">
               <h5 className="flex justify-center mb-2 text-2xl font-bold tracking-tight text-gray-900 group-hover:text-white great-vibes-regular">
                 Contact
@@ -83,8 +83,8 @@ navigate("/requestQuote");
                 </text>
               </svg>
             </div>
-
-            <div className="space-y-10 mt-12 flex-col justify-center great-vibes-regular">
+            
+            <div className="space-y-10 mt-12 flex-col great-vibes-regular">
               <p className="flex font-normal text-gray-700 group-hover:text-white">
                 <EnvelopeIcon className="mr-2 text-[#ffccd3] group-hover:text-white h-7 w-7" />{" "}
                 <a href="https://www.msn.com/fr-fr" target="_blank">

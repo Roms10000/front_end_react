@@ -52,7 +52,10 @@ let roles = [];
       fetchDemandes();
   }, []);
 
-
+const handleClick = async (e) => {
+e.preventDefault();
+navigate("/requestQuote");
+}
 
 const isAdmin = userRoles.includes("ROLE_ADMIN");
 return(
@@ -60,12 +63,20 @@ return(
 <Nav />
  <main className="flex-grow">
     <div>
-        <div className="flex ml-30 mt-10 underline">
-            <h5 className=" flex mb-10  text-2xl font-bold tracking-tight text-gray-900 group-hover:text-white great-vibes-regular">Suivie des demandes</h5>
-            <svg xmlns="http://www.w3.org/2000/svg" width="128" height="45" viewBox="0 0 128 128">
-            <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fontSize="96">🌸</text></svg>
+        <div className="flex ml-30 mt-10">
+          <h5 className="mb-10  text-2xl font-bold tracking-tight text-gray-900 group-hover:text-white great-vibes-regular underline">Suivie des demandes</h5>
+          <svg xmlns="http://www.w3.org/2000/svg" width="128" height="45" viewBox="0 0 128 128">
+          <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fontSize="96">🌸</text></svg>
+              <button
+                className="cursor-pointer mb-5 text-white bg-rose-200 hover:bg-rose-300 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                type="button"
+                onClick={handleClick}>
+                  Faire une demande
+              </button>
         </div>
-            <table className=" ml-18  justify-center w-400 border rounded-lg border-gray-900 text-sm text-gray-900">
+
+        <div className="flex justify-center">
+            <table className="w-400 border border-gray-900 text-sm text-gray-900">
                 <thead className="bg-gray-200 text-gray-900">
                     <tr>
                         <th className="px-4 py-2 text-left">n° de demande</th>
@@ -121,6 +132,7 @@ return(
                 ))}
                 </tbody>
             </table>
+            </div>
     </div>
 </main>
 <Footer/>
