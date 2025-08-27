@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { FaInstagram,FaLinkedin, FaFacebook } from "react-icons/fa";
+import { FaInstagram,FaLinkedin, FaFacebook,FaArrowLeft } from "react-icons/fa";
 import { EnvelopeIcon, PhoneIcon  } from '@heroicons/react/24/solid';
 import Modal from "./Modal";
 import Modal1 from "./Modal1";
@@ -49,7 +49,7 @@ navigate("/requestQuote");
                 <li>Back end gestion base de données</li>
                 <li>Amélioration performance du site</li>
               </div>
-
+                <div className="flex">
               <button
                 className="cursor-pointer mt-15 text-white bg-rose-200 hover:bg-rose-300 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 type="button"
@@ -57,6 +57,8 @@ navigate("/requestQuote");
               >
                 Faire une demande
               </button>
+              <FaArrowLeft className="text-gray-300 mt-17 ml-3 w-6 h-8 animate-bounce" />
+              </div>
             </div>
           </div>
 
