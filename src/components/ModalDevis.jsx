@@ -81,12 +81,11 @@ export default function ModalDevis({devisId, clientNom, clientPrenom,}) {
         "Accept": "application/ld+json",
       },
     });
-
     if (!response.ok) {
       throw new Error(`Erreur API : ${response.status}`);
     }
     const data = await response.json();
-    console.log(data);
+    
     const factureId = data.factureId;
     fetch(`http://localhost:8000/facture/pdf/${factureId}`)
       .then(res => {
