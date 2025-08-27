@@ -73,21 +73,25 @@ export default function ModalDevis({devisId, clientNom, clientPrenom,}) {
   
   const handleStatutAccept = async (e) => {
     e.preventDefault();
-     try {
-      const response = await fetch(`http://localhost:8000/api/devis/${devisId}`, {
+    try {
+      const response = await fetch(`http://localhost:8000/api/devis/${devisId}/accepter`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/merge-patch+json",
         "Accept": "application/ld+json",
       },
-      body: JSON.stringify({
-        statut: "Accepter",
-      }),
     });
-
     if (!response.ok) {
       throw new Error(`Erreur API : ${response.status}`);
     }
+    const data = await response.json();
+    
+    const factureId = data.factureId;
+    fetch(`http://localhost:8000/facture/pdf/${factureId}`)
+      .then(res => {
+        if (!res.ok) throw new Error("Erreur lors de la génération du PDF");
+      })
+      .catch(err => console.error(err));
 
     alert("Le devis a été accepté et son statut mis à jour !");
     setActionDone(true); 
