@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import ModalDevis from "./ModalDevis";
 import { button } from "@material-tailwind/react";
 import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router";
 
 export default function Dashboard ({Id}) {
 
@@ -12,7 +13,7 @@ export default function Dashboard ({Id}) {
     const [devis, setDevis] = useState([]);
     const [userRoles, setUserRoles] = useState([]);
     const [factures, setFactures] = useState([]);
-
+    const navigate = useNavigate();
   useEffect(() => {
 
 const userId = localStorage.getItem("id");
@@ -63,15 +64,18 @@ return(
 <Nav />
  <main className="flex-grow">
     <div>
-        <div className="flex ml-30 mt-10">
+        <div className="flex ml-50 mt-10">
           <h5 className="mb-10  text-2xl font-bold tracking-tight text-gray-900 group-hover:text-white great-vibes-regular underline">Suivie des demandes</h5>
           <svg xmlns="http://www.w3.org/2000/svg" width="128" height="45" viewBox="0 0 128 128">
           <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fontSize="96">🌸</text></svg>
               <button
-                className="cursor-pointer mb-5 text-white bg-rose-200 hover:bg-rose-300 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                type="button"
-                onClick={handleClick}>
-                  Faire une demande
+                onClick={handleClick}
+                className="cursor-pointer  rounded-md border-2 border-amber-50 w-[150px] h-[50px] relative group overflow-hidden 
+                transition-transform duration-300 ease-out hover:scale-110">
+                <div className="bg-rose-200 text-amber-50 w-full h-full flex flex-col justify-center">
+                Faire une demande
+                </div>
+                <div className="transition-transform ease-out bg-gray-400 opacity-40 absolute w-[20px] h-[60px] -top-2 -skew-x-12 -translate-x-8 group-hover:translate-x-40">&nbsp;</div>
               </button>
         </div>
 
@@ -120,7 +124,7 @@ return(
                                   href={`http://localhost:8000${demande.facture}`} // chemin vers le PDF
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-rose-200 underline"
+                                  className="text-rose-300 underline"
                                 >
                                   Voir la facture
                                 </a>
