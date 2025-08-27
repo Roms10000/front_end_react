@@ -92,7 +92,7 @@ return(
                         <th className="px-4 py-2 text-left">Statut du devis</th>
                         <th className="px-4 py-2 text-left">Devis</th>
                         <th className="px-4 py-2 text-left">Facture</th>
-                        <th className="px-4 py-2 text-left">Payement</th>
+                        <th className="px-4 py-2 text-left">Paypal/CB</th>
                     </tr>
                 </thead>
                 <tbody>
