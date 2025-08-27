@@ -93,7 +93,7 @@ return(
                         <th className="px-4 py-2 text-left">Statut du devis</th>
                         <th className="px-4 py-2 text-left">Devis</th>
                         <th className="px-4 py-2 text-left">Facture</th>
-                        <th className="px-4 py-2 text-left">Payement</th>
+                        <th className="px-4 py-2 text-left">Paypal/CB</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -123,7 +123,7 @@ return(
                                   href={`http://localhost:8000${demande.facture}`} // chemin vers le PDF
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-rose-200 underline"
+                                  className="text-rose-300 underline"
                                 >
                                 Voir la facture
                                 </a>
