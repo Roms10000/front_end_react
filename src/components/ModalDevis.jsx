@@ -190,7 +190,7 @@ const ModalContent = () => (
               <p>{data.developpeur?.email}</p>
               <p>{data.developpeur?.telephone}</p>
               <p className="mt-4">Date : <span className="font-bold">{data.devis?.date_devis ? new Date(data.devis.date_devis).toLocaleDateString('fr-FR') : ''}</span></p>
-              <p>N° Devis : <span className="font-bold">{data.devis?.numero}</span></p>
+              <p>N° Devis : <span className="font-bold">DEV{data.devis?.numero}</span></p>
             </div>
             <div className="text-right text-gray-600">
               <p className="font-semibold text-gray-900">Client</p>

@@ -132,7 +132,7 @@ return(
                         )}
                         </td>
                         <td className="px-4 py-2">
-                        {demande.facture!=null && demande.paiement===false ? (
+                        {demande.facture!=null && demande.paiement === 0 ? (
                             <ModalPayPal factureId={demande.factureId} prixtotal={demande.total}/>
                         ) : (
                         "--"
