@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router";
 
 export default function ForgotPassword () {
 
@@ -19,11 +20,13 @@ e.preventDefault();
     <>
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <Link to="/">
           <img
             alt="Your Company"
             src="/img/ordi.webp"
             className="mx-auto h-10 w-auto"
           />
+          </Link>
           <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
             Mots de passe oublié ?
           </h2>
@@ -48,12 +51,16 @@ e.preventDefault();
             </div>
 
             <div>
-              <button
-                type="submit"
-                className=" cursor-pointer flex w-full justify-center rounded-md bg-rose-200 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-rose-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-300"
-              >
-                Demander une réinitialisation de son mots de passe
-              </button>
+<button
+  type="submit"
+  className="rounded-md border-2 border-amber-50 w-[390px] h-[50px] relative group overflow-hidden 
+             transition-transform duration-300 ease-out hover:scale-110 cursor-pointer"
+>
+  <div className="bg-rose-200 text-amber-50 w-full h-full flex flex-col justify-center">
+    Demander une réinitialisation de mots de passe
+  </div>
+  <div className="transition-transform ease-out bg-gray-400 opacity-40 absolute w-[20px] h-[60px] -top-2 -skew-x-12 -translate-x-8 group-hover:translate-x-110">&nbsp;</div>
+</button> 
             </div>
           </form>
         </div>
