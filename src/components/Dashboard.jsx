@@ -9,15 +9,15 @@ export default function Dashboard ({Id}) {
 
 
     const [demandes, setDemandes] = useState([]);
-    const [devis, setDevis] = useState([]);
+ 
     const [userRoles, setUserRoles] = useState([]);
-    const [factures, setFactures] = useState([]);
+
 
   useEffect(() => {
 
-const userId = localStorage.getItem("id");
-const roleString = localStorage.getItem("roles")
-let roles = [];
+    const userId = localStorage.getItem("id");
+    const roleString = localStorage.getItem("roles")
+    let roles = [];
     try {
       if (roleString && roleString !== "undefined") {
         roles = JSON.parse(roleString);
@@ -32,25 +32,23 @@ let roles = [];
       return;
     }
     
- const fetchDemandes= async () => {
-    try{
-        const isAdmin = roles.includes("ROLE_ADMIN");
+    const fetchDemandes= async () => {
+        try{
         
-        const url = isAdmin
-          ? "http://localhost:8000/api/demandes"
-          : `http://localhost:8000/api/backoffice/${userId}`;
-        
-            const res = await fetch(url);
-            if (!res.ok) throw new Error("Erreur fetch demandes");
-            const data = await res.json();
             
-            setDemandes(data);
-        } catch (error) {
-            console.error(error);
-        }
-  };
-      fetchDemandes();
-  }, []);
+            const url = `http://localhost:8000/api/backoffice/${userId}`;
+            
+                const res = await fetch(url);
+                if (!res.ok) throw new Error("Erreur fetch demandes");
+                const data = await res.json();
+                
+                setDemandes(data);
+            } catch (error) {
+                console.error(error);
+            }
+    };
+        fetchDemandes();
+    }, []);
 
 
 
