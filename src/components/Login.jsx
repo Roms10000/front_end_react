@@ -51,7 +51,7 @@ export default function Login () {
         console.error("Erreur fetch:", err);
         setError("Impossible de se connecter !");
       }
-        console.log('data.user.roles');
+       
 
     };
     return (

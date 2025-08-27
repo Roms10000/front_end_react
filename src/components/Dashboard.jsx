@@ -6,53 +6,62 @@ import React, { useState, useEffect } from "react";
 
 export default function Dashboard ({Id}) {
 
-
-
     const [demandes, setDemandes] = useState([]);
- 
     const [userRoles, setUserRoles] = useState([]);
 
 
-  useEffect(() => {
-
-    const userId = localStorage.getItem("id");
-    const roleString = localStorage.getItem("roles")
-    let roles = [];
-    try {
-      if (roleString && roleString !== "undefined") {
-        roles = JSON.parse(roleString);
-      }
-    } catch (e) {
-      console.error("Erreur lors de l'analyse des rôles depuis le localStorage :", e);
-    }
-    setUserRoles(roles);
-
-    if (!userId || roles.length === 0) {
-      console.log("Utilisateur non trouvable");
-      return;
-    }
-    
-    const fetchDemandes= async () => {
-        try{
-        
-            
-            const url = `http://localhost:8000/api/backoffice/${userId}`;
-            
-                const res = await fetch(url);
-                if (!res.ok) throw new Error("Erreur fetch demandes");
-                const data = await res.json();
-                
-                setDemandes(data);
-            } catch (error) {
-                console.error(error);
+  // Define fetchDemandes outside of useEffect so it can be passed as a prop
+    const fetchDemandes = async () => {
+        const userId = localStorage.getItem("id");
+        const roleString = localStorage.getItem("roles");
+        let roles = [];
+        try {
+            if (roleString && roleString !== "undefined") {
+                roles = JSON.parse(roleString);
             }
-    };
-        fetchDemandes();
-    }, []);
+        } catch (e) {
+            console.error("Erreur lors de l'analyse des rôles depuis le localStorage :", e);
+        }
 
+        if (!userId || roles.length === 0) {
+            console.log("Utilisateur non trouvable");
+            return;
+        }
+
+        try {
+            const url = `http://localhost:8000/api/backoffice/${userId}`;
+            const res = await fetch(url);
+            if (!res.ok) throw new Error("Erreur fetch demandes");
+            const data = await res.json();
+            
+            // If it returns an array of demands
+            setDemandes(data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+
+    useEffect(() => {
+        const userId = localStorage.getItem("id");
+        const roleString = localStorage.getItem("roles");
+        let roles = [];
+        try {
+            if (roleString && roleString !== "undefined") {
+                roles = JSON.parse(roleString);
+            }
+        } catch (e) {
+            console.error("Erreur lors de l'analyse des rôles depuis le localStorage :", e);
+        }
+        setUserRoles(roles);
+
+        // Call fetchDemandes when the component mounts
+        fetchDemandes();
+    }, []); // Empty dependency array ensures it runs only once
 
 
 const isAdmin = userRoles.includes("ROLE_ADMIN");
+
 return(
 <div className="flex flex-col min-h-[130vh]">
 <Nav />
@@ -95,7 +104,7 @@ return(
                         <td className="px-4 py-2">{demande.statut!=null ? demande.statut : "--"}</td>
                     <td className="px-4 py-2">
                     {demande.devis_id!=null ? (
-                        <ModalDevis devisId={demande.devis_id} clientNom={demande.nom} clientPrenom={demande.prenom} />
+                        <ModalDevis devisId={demande.devis_id} clientNom={demande.nom} clientPrenom={demande.prenom} onActionComplete={fetchDemandes}/>
                     ) : (
                         "--"
                     )}

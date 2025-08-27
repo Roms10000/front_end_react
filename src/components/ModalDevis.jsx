@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 // Composant de modal pour afficher un devis complet en se connectant à un backend Symfony (API Platform).
-export default function ModalDevis({devisId, clientNom, clientPrenom,}) {
+export default function ModalDevis({devisId, clientNom, clientPrenom, onActionComplete}) {
   const [showModal, setShowModal] = useState(false);
   const [devisData, setDevisData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -93,6 +93,11 @@ export default function ModalDevis({devisId, clientNom, clientPrenom,}) {
     setActionDone(true); 
     setShowModal(false);
 
+     // Call the function passed from the parent component
+      if (onActionComplete) {
+        onActionComplete();
+      }
+
     setTimeout(() => {
     window.location.reload();
     }, 1000);
@@ -125,7 +130,11 @@ export default function ModalDevis({devisId, clientNom, clientPrenom,}) {
     setActionDone(true);
     setShowModal(false);
 
-
+     // Call the function passed from the parent component
+      if (onActionComplete) {
+        onActionComplete();
+      }
+      
     setTimeout(() => {
     window.location.reload();
     }, 1000);
