@@ -30,6 +30,7 @@ let roles = [];
 
     if (!userId || roles.length === 0) {
         console.log("Utilisateur non trouvable");
+        navigate("/login");
         return;
     }
     
@@ -92,7 +93,7 @@ return(
                         <th className="px-4 py-2 text-left">Statut du devis</th>
                         <th className="px-4 py-2 text-left">Devis</th>
                         <th className="px-4 py-2 text-left">Facture</th>
-                        <th className="px-4 py-2 text-left">Payement</th>
+                        <th className="px-4 py-2 text-left">Paypal/CB</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -130,7 +131,12 @@ return(
                         "--"
                         )}
                         </td>
-                        <td className="px-4 py-2"><ModalPayPal factureId={demande.factureId} prixtotal={demande.total}/></td>
+                        <td className="px-4 py-2">
+                        {demande.facture!=null && demande.paiement===false ? (
+                            <ModalPayPal factureId={demande.factureId} prixtotal={demande.total}/>
+                        ) : (
+                        "--"
+                        )}</td>
                     </tr>
                 ))}
                 </tbody>
