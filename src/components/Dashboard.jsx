@@ -1,44 +1,41 @@
 import Nav from "./Nav";
 import Footer from "./Footer";
 import ModalDevis from "./ModalDevis";
-import { button } from "@material-tailwind/react";
+import { Button, button } from "@material-tailwind/react";
 import React, { useState, useEffect } from "react";
+import ModalPayPal from "./ModalPayPal";
 
 export default function Dashboard ({Id}) {
 
 
 
     const [demandes, setDemandes] = useState([]);
-    const [devis, setDevis] = useState([]);
     const [userRoles, setUserRoles] = useState([]);
-    const [factures, setFactures] = useState([]);
 
-  useEffect(() => {
+
+useEffect(() => {
 
 const userId = localStorage.getItem("id");
 const roleString = localStorage.getItem("roles")
 let roles = [];
     try {
-      if (roleString && roleString !== "undefined") {
+        if (roleString && roleString !== "undefined") {
         roles = JSON.parse(roleString);
-      }
+        }
     } catch (e) {
-      console.error("Erreur lors de l'analyse des rôles depuis le localStorage :", e);
+        console.error("Erreur lors de l'analyse des rôles depuis le localStorage :", e);
     }
     setUserRoles(roles);
 
     if (!userId || roles.length === 0) {
-      console.log("Utilisateur non trouvable");
-      return;
+        console.log("Utilisateur non trouvable");
+        return;
     }
     
- const fetchDemandes= async () => {
+const fetchDemandes= async () => {
     try{
-        const isAdmin = roles.includes("ROLE_ADMIN");
         
-        const url = isAdmin
-          ? "http://localhost:8000/api/demandes"
-          : `http://localhost:8000/api/backoffice/${userId}`;
+        const url = `http://localhost:8000/api/backoffice/${userId}`;
         
             const res = await fetch(url);
             if (!res.ok) throw new Error("Erreur fetch demandes");
@@ -91,6 +88,7 @@ return(
                         <th className="px-4 py-2 text-left">Statut du devis</th>
                         <th className="px-4 py-2 text-left">Devis</th>
                         <th className="px-4 py-2 text-left">Facture</th>
+                        <th className="px-4 py-2 text-left">Payement</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -116,18 +114,19 @@ return(
                         <td className="px-4 py-2">
                         {demande.facture!=null ? (
                                 <a
-                                  key={demande.facture}
-                                  href={`http://localhost:8000${demande.facture}`} // chemin vers le PDF
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-rose-200 underline"
+                                key={demande.facture}
+                                href={`http://localhost:8000${demande.facture}`} // chemin vers le PDF
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-rose-200 underline"
                                 >
-                                  Voir la facture
+                                Voir la facture
                                 </a>
                         ) : (
-                          "--"
+                        "--"
                         )}
                         </td>
+                        <td className="px-4 py-2"><ModalPayPal factureId={demande.factureId} prixtotal={demande.total}/></td>
                     </tr>
                 ))}
                 </tbody>
