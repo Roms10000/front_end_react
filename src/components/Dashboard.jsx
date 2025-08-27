@@ -122,7 +122,7 @@ return(
                                   href={`http://localhost:8000${demande.facture}`} // chemin vers le PDF
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-rose-200 underline"
+                                  className="text-rose-300 underline"
                                 >
                                 Voir la facture
                                 </a>
