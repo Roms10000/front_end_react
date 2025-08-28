@@ -73,21 +73,25 @@ export default function ModalDevis({devisId, clientNom, clientPrenom,}) {
   
   const handleStatutAccept = async (e) => {
     e.preventDefault();
-     try {
-      const response = await fetch(`http://localhost:8000/api/devis/${devisId}`, {
+    try {
+      const response = await fetch(`http://localhost:8000/api/devis/${devisId}/accepter`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/merge-patch+json",
         "Accept": "application/ld+json",
       },
-      body: JSON.stringify({
-        statut: "Accepter",
-      }),
     });
-
     if (!response.ok) {
       throw new Error(`Erreur API : ${response.status}`);
     }
+    const data = await response.json();
+    
+    const factureId = data.factureId;
+    fetch(`http://localhost:8000/facture/pdf/${factureId}`)
+      .then(res => {
+        if (!res.ok) throw new Error("Erreur lors de la génération du PDF");
+      })
+      .catch(err => console.error(err));
 
     alert("Le devis a été accepté et son statut mis à jour !");
     setActionDone(true); 
@@ -190,7 +194,7 @@ const ModalContent = () => (
               <p>{data.developpeur?.email}</p>
               <p>{data.developpeur?.telephone}</p>
               <p className="mt-4">Date : <span className="font-bold">{data.devis?.date_devis ? new Date(data.devis.date_devis).toLocaleDateString('fr-FR') : ''}</span></p>
-              <p>N° Devis : <span className="font-bold">{data.devis?.numero}</span></p>
+              <p>N° Devis : <span className="font-bold">DEV{data.devis?.numero}</span></p>
             </div>
             <div className="text-right text-gray-600">
               <p className="font-semibold text-gray-900">Client</p>
