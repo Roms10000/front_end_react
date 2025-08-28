@@ -107,7 +107,7 @@ return(
                                     <td className="px-4 py-2">{demande.prenom}</td>
                                 </>
                             )}
-                        <td className="px-4 py-2">{demande.numero!=null ? demande.numero : "--"}</td>
+                        <td className="px-4 py-2">{demande.numero!=null ? 'DEV' + demande.numero : "--"}</td>
                         <td className="px-4 py-2">{demande.statut!=null ? demande.statut : "--"}</td>
                     <td className="px-4 py-2">
                     {demande.devis_id!=null ? (
