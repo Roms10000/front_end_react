@@ -86,41 +86,48 @@ e.preventDefault();
 {/* Partie droite */}
 <div className="relative w-[700px] h-[400px] mt-20 ml-30">
   {/* Image arbre */}
-  <img src="./img/arbre.webp" className="w-6xl h-100" />
+  <img src="./img/arbre.webp" className="w-6xl h-100 border border-white rounded-2xl" />
 
   {/* Bloc Contact en overlay (items en ligne) */}
-  <div className="absolute top-10 left-12 flex space-x-6 great-vibes-regular text-rose-300 underline text-2xl">CONTACT</div>
-      <div className="absolute top-80 left-10 flex space-x-6 great-vibes-regular text-gray-200">
+  <div className="absolute top-60 left-12 flex space-x-6 great-vibes-regular text-[var(--color-bordeau)] text-2xl"></div>
+      <div className="absolute top-75 left-0 flex space-x-6 great-vibes-regular text-[var(--color-bordeau)]" style={{background: '#ffffff30', padding: '5px 48px'}}>
           <p className="flex items-center">
-            <EnvelopeIcon className="mr-2 h-6 w-6 text-gray-200" />
+            <EnvelopeIcon className="mr-2 h-6 w-6 text-[var(--color-bordeau)]" />
             <a href="https://www.msn.com/fr-fr" target="_blank">eMail</a>
           </p>
           <p className="flex items-center">
-            <PhoneIcon className="mr-2 h-6 w-6 text-gray-200" />
+            <PhoneIcon className="mr-2 h-6 w-6 text-[var(--color-bordeau)]" />
             <span>03.25.25.11.63</span>
           </p>
           <p className="flex items-center">
-            <FaLinkedin size={24} className="mr-2 text-gray-200" />
+            <FaLinkedin size={24} className="mr-2 text-[var(--color-bordeau)]" />
             <a href="https://www.linkedin.com/in/romain-richardon-4b8083245/" target="_blank">LinkedIn</a>
           </p>
           <p className="flex items-center">
-            <FaInstagram size={24} className="mr-2 text-gray-2000" />
+            <FaInstagram size={24} className="mr-2 text-[var(--color-bordeau)]" />
             <a href="https://www.instagram.com/beyonce" target="_blank">Instagram</a>
           </p>
           <p className="flex items-center">
-            <FaFacebook size={24} className="mr-2 text-gray-200" />
+            <FaFacebook size={24} className="mr-2 text-[var(--color-bordeau)]" />
             <a href="https://hazemgherissi.com/" target="_blank">Facebook</a>
             </p>
             </div>
-            <div className="mt-10 font-bold text-lg flex justify-center great-vibes-regular">Nous avons collaborer avec pas mal de grandes entreprises , tous étaient satisfaits de notre travail</div>
+            <div className="mt-10 font-bold text-lg flex justify-center great-vibes-regular">Les entreprises avec lesquels nous avons travaillés :</div>
+              <div className="flex ">
+                <div className="ml-55 mt-6">
+                  <img src="./img/riz.webp" className=" h-20 "/>
+                </div>
+                <div className=" ml-20 mt-6">
+                  <img src="./img/dorcel.webp" className=" h-20  "/>
+                </div>
+              </div>
+            <div className="mt-10 font-bold text-lg flex justify-center great-vibes-regular">Leurs avis :</div>
             <div className="flex mt-10 ml-50 gap-20">
               <Modal />
               <Modal1 />
             </div>
           </div>
-
         </div>
-        
       </main>
       {/* Footer toujours en bas */}
   <Footer />
