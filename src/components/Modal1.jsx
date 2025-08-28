@@ -39,7 +39,7 @@ export default function Modal1() {
                     <span className="sr-only">Close modal</span>
                 </button>
             </div>
-            <img src="/img/message2.png"   alt="message2" className="w-full h-auto max-h-[70vh] object-contain rounded-lg"/>
+            <img src="/img/message2.PNG"   alt="message2" className="w-full h-auto max-h-[70vh] object-contain rounded-lg"/>
             </div>
         </div>
     )}
