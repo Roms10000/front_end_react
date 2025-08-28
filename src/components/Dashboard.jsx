@@ -136,7 +136,7 @@ return(
                                 <ModalPayPal factureId={demande.factureId} prixtotal={demande.total} />
                             ) : (
                                 demande.paiement === 1 ? (
-                                "A payé"
+                                "Payée"
                                 ) : (
                                 "--"
                                 )
