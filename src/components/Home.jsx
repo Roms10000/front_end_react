@@ -7,6 +7,7 @@ import Modal1 from "./Modal1";
 import Nav from "./Nav";
 import Footer from "./Footer";
 
+
 export default function Home () {
 
 const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -52,7 +53,7 @@ e.preventDefault();
 Ce site permet de faire une demande de devis concernant des prestations sur une application ou un site web. Nous savons tout faire. Même si vous ne trouvez pas votre bonheur dans les prestations proposées, n’hésitez pas à nous contacter : l’informatique, ça nous connaît !
             </p>
             <div className="flex gap-5 justify-center mt-20">
-<div className="card">
+<div className="card" style={{minWidth : '200px'}}>
   <div className="content">
     <div className="front">
       <h1 className="underline text-2xl font-bold mt-2">Realisation de site</h1>
@@ -64,7 +65,7 @@ Ce site permet de faire une demande de devis concernant des prestations sur une 
     </div>
   </div>
 </div>
-<div className="card">
+<div className="card" style={{minWidth : '200px'}}>
   <div className="content">
     <div className="front">
       <h1 className="underline text-2xl font-bold mt-2">Dépannage</h1>
@@ -76,7 +77,7 @@ Ce site permet de faire une demande de devis concernant des prestations sur une 
     </div>
   </div>
 </div>
-<div className="card">
+<div className="card" style={{minWidth : '200px'}}>
   <div className="content">
     <div className="front">
       <h1 className="underline text-2xl font-bold mt-2">Maquettage</h1>
@@ -104,12 +105,12 @@ Ce site permet de faire une demande de devis concernant des prestations sur une 
           </div>
 
 {/* Partie droite */}
-<div className="relative w-full max-w-[700px] mt-8 ml-0 sm:ml-5 md:ml-10 lg:ml-20 xl:ml-20">
+<div className=" w-full max-w-[700px] mt-8 ">
   {/* Image arbre */}
-  <img src="./img/arbre.webp" className="w-full max-w-4xl h-auto ml-0 sm:ml-5 md:ml-10 lg:ml-20 xl:ml-15 border border-white rounded-2xl" />
+  <img src="./img/arbre.webp" className="relative w-full max-w-4xl h-auto border border-white rounded-2xl" />
 
   {/* Bloc Contact en overlay (items en ligne) */}
-      <div className="absolute top-15 sm:top-86 sm:-left-5 md:top-80 md:left-2 lg:top-84 lg:left-7 sm:flex justify-center space-x-4 sm:space-x-6 bg-white/30 px-4 py-2 rounded-xl great-vibes-regular text-[var(--color-bordeau)] text-lg " style={{background: '#ffffff30', padding: '5px 48px'}}>
+      <div className="absolute top-25  sm:flex justify-center space-x-4 sm:space-x-6 bg-white/30 px-4 py-2 rounded-xl great-vibes-regular text-[var(--color-bordeau)] text-lg " style={{background: '#ffffff30', padding: '5px 48px'}}>
           <p className="flex items-center">
             <EnvelopeIcon className="mr-2 h-6 w-6 text-[var(--color-bordeau)]" />
             <a href="https://www.msn.com/fr-fr" target="_blank">eMail</a>
@@ -131,7 +132,7 @@ Ce site permet de faire une demande de devis concernant des prestations sur une 
             <a href="https://hazemgherissi.com/" target="_blank">Facebook</a>
             </p>
             </div>
-            <div className="ml-0 sm:ml-5 md:ml-10 lg:ml-20 xl:ml-28">
+            <div className="">
               <div className="mt-20 font-bold text-lg flex justify-center great-vibes-regular">Les entreprises avec lesquels nous avons travaillés :</div>
                 <div className="flex flex-wrap justify-center gap-10 mt-6">
                   <div className="flex flex-col items-center">
