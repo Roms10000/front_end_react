@@ -11,7 +11,7 @@ export default function Footer() {
     <p className="text-2xl underline">En savoir plus sur l'entreprise:</p>
     <a href="https://fr.freepik.com/photos-gratuite/groupe-adolescents-uniforme-pom-pom-girl-mignon_18773966.htm#fromView=keyword&page=1&position=13&uuid=af47da89-0059-46fc-a955-fc5931400701&query=Esprit+Equipe+Pom+Pom+Girls" target="_blank"> Notre équipe</a>
     <p className="">Ville : Fontenay-le-comte  </p>
-    <p className="flex justify-center gap-2">Pays : <img src="/img/french.svg" className="w-4"/></p>
+    <p className="flex gap-2">Pays : <img src="/img/french.svg" className="w-4"/></p>
     <a href="https://www.economie.gouv.fr/entreprises/innover-et-numeriser-son-entreprise/mentions-sur-votre-site-internet-les-obligations" target="_blank">Mentions légales  </a>
     <a href="https://www.economie.gouv.fr/politique-confidentialite" target="_blank">Politique de confidentialité  </a>
     </div>
