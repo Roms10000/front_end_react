@@ -49,32 +49,52 @@ e.preventDefault();
               A quoi servons nous exactement ?
             </h2>
             <p className="mt-10  ml-10 text-lg great-vibes-regular">
-              Ce site permet de faire une demande de devis concernant des
-              prestations sur une application ou un site web. Nous savons tous faire , meme si vous ne trouvez pas votre bonheur dans les prestations proposés hésiter pas à nous contacter , l'informatique ca nous connait !
+Ce site permet de faire une demande de devis concernant des prestations sur une application ou un site web. Nous savons tout faire. Même si vous ne trouvez pas votre bonheur dans les prestations proposées, n’hésitez pas à nous contacter : l’informatique, ça nous connaît !
             </p>
-            <div className="flex gap-5 mt-10">
-                <a className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Réalisation de site complet</h5>
-                <p className="font-normal text-gray-700 dark:text-gray-400">Nous pouvons vous éditer un site vitrine ou un site e-commerce.</p>
-                <button type="button" className="bg-gray-200 mt-2 p-2">A partir de 500€</button>
-                </a>
-                <a className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Dépannage de votre site</h5>
-                <p className="font-normal text-gray-700 dark:text-gray-400">Si vous avez nimporte qu'elle bug, apellez nous !</p>
-                <button type="button" className="bg-gray-200 mt-2 p-2">A partir de 600€</button>
-                </a>
-                <a className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Réalisation d'une maquette</h5>
-                <p className="font-normal text-gray-700 dark:text-gray-400">Nous pouvons vous éditer une simple maquette de site</p>
-                <button type="button" className="bg-gray-200 mt-2 p-2">A partir de 300€</button>
-                </a>
+            <div className="flex gap-5 justify-center mt-20">
+<div className="card">
+  <div className="content">
+    <div className="front">
+      <h1 className="underline text-2xl font-bold mt-2">Realisation de site</h1>
+      <p className="mt-2">Que ce soit pour de sites e-commerce, site vitrine ...</p>
+    </div>
+    <div className="back1">
+      <h1 className="mt-2 text-2xl underline">Tarif</h1>
+      <p className="mt-5">A partir de 300€ /jours</p>
+    </div>
+  </div>
+</div>
+<div className="card">
+  <div className="content">
+    <div className="front">
+      <h1 className="underline text-2xl font-bold mt-2">Dépannage</h1>
+      <p className="mt-2">Si vous rencontrez un bug quelconque</p>
+    </div>
+    <div className="back2">
+      <h1 className="mt-2 text-2xl underline">Tarif</h1>
+      <p className="mt-5">A partir de 100€ /jours</p>
+    </div>
+  </div>
+</div>
+<div className="card">
+  <div className="content">
+    <div className="front">
+      <h1 className="underline text-2xl font-bold mt-2">Maquettage</h1>
+      <p className="mt-2">Si vous voulez simplement une maquette de site</p>
+    </div>
+    <div className="back">
+      <h1 className="mt-2 text-2xl underline">Tarif</h1>
+      <p className="mt-5">150€ la maquette</p>
+    </div>
+  </div>
+</div>
             </div>
                 <div className="flex justify-center">
               <button
               onClick={handleClick}
                 className="cursor-pointer mt-15 rounded-md border-2 border-amber-50 w-[150px] h-[50px] relative group overflow-hidden 
                 transition-transform duration-300 ease-out hover:scale-110">
-                <div className="bg-rose-300 text-amber-50 w-full h-full flex flex-col justify-center">
+                <div className="bg-rose-300 text-[var(--color-bordeau)] w-full h-full flex flex-col justify-center">
                 Faire une demande
                 </div>
                 <div className="transition-transform ease-out bg-gray-400 opacity-40 absolute w-[20px] h-[60px] -top-2 -skew-x-12 -translate-x-8 group-hover:translate-x-40">&nbsp;</div>
@@ -84,13 +104,12 @@ e.preventDefault();
           </div>
 
 {/* Partie droite */}
-<div className="relative w-[700px] h-[400px] mt-20 ml-30">
+<div className="relative w-full max-w-[700px] mt-8 ml-0 sm:ml-5 md:ml-10 lg:ml-20 xl:ml-20">
   {/* Image arbre */}
-  <img src="./img/arbre.webp" className="w-6xl h-100 border border-white rounded-2xl" />
+  <img src="./img/arbre.webp" className="w-full max-w-4xl h-auto ml-0 sm:ml-5 md:ml-10 lg:ml-20 xl:ml-15 border border-white rounded-2xl" />
 
   {/* Bloc Contact en overlay (items en ligne) */}
-  <div className="absolute top-60 left-12 flex space-x-6 great-vibes-regular text-[var(--color-bordeau)] text-2xl"></div>
-      <div className="absolute top-75 left-0 flex space-x-6 great-vibes-regular text-[var(--color-bordeau)]" style={{background: '#ffffff30', padding: '5px 48px'}}>
+      <div className="absolute top-15 sm:top-86 sm:-left-5 md:top-80 md:left-2 lg:top-84 lg:left-7 sm:flex justify-center space-x-4 sm:space-x-6 bg-white/30 px-4 py-2 rounded-xl great-vibes-regular text-[var(--color-bordeau)] text-lg " style={{background: '#ffffff30', padding: '5px 48px'}}>
           <p className="flex items-center">
             <EnvelopeIcon className="mr-2 h-6 w-6 text-[var(--color-bordeau)]" />
             <a href="https://www.msn.com/fr-fr" target="_blank">eMail</a>
@@ -112,21 +131,20 @@ e.preventDefault();
             <a href="https://hazemgherissi.com/" target="_blank">Facebook</a>
             </p>
             </div>
-            <div className="mt-10 font-bold text-lg flex justify-center great-vibes-regular">Les entreprises avec lesquels nous avons travaillés :</div>
-              <div className="flex ">
-                <div className="ml-55 mt-6">
-                  <img src="./img/riz.webp" className=" h-20 "/>
-                </div>
-                <div className=" ml-20 mt-6">
-                  <img src="./img/dorcel.webp" className=" h-20  "/>
+            <div className="ml-0 sm:ml-5 md:ml-10 lg:ml-20 xl:ml-28">
+              <div className="mt-20 font-bold text-lg flex justify-center great-vibes-regular">Les entreprises avec lesquels nous avons travaillés :</div>
+                <div className="flex flex-wrap justify-center gap-10 mt-6">
+                  <div className="flex flex-col items-center">
+                    <img src="./img/riz.webp" className="h-20"/>
+                    <Modal />
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <img src="./img/dorcel.webp" className="h-20"/>
+                    <Modal1 />
+                  </div>
                 </div>
               </div>
-            <div className="mt-10 font-bold text-lg flex justify-center great-vibes-regular">Leurs avis :</div>
-            <div className="flex mt-10 ml-50 gap-20">
-              <Modal />
-              <Modal1 />
-            </div>
-          </div>
+              </div>
         </div>
       </main>
       {/* Footer toujours en bas */}
