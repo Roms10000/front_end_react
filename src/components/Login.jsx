@@ -25,6 +25,9 @@ export default function Login () {
 
         if (!res.ok) {
             const errorData = await res.json();
+            if (res.status === 401) {
+              throw new Error("Email ou mot de passe incorrect.");
+            }
             throw new Error(errorData.message || "Erreur serveur");
         }
         
@@ -49,7 +52,7 @@ export default function Login () {
         }
       } catch (err) {
         console.error("Erreur fetch:", err);
-        setError("Impossible de se connecter !");
+        setError(err.message);
       }
         console.log('data.user.roles');
 
