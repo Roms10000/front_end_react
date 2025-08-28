@@ -8,8 +8,6 @@ import { Link, useNavigate } from "react-router";
 
 export default function Dashboard ({Id}) {
 
-
-
     const [demandes, setDemandes] = useState([]);
     const [userRoles, setUserRoles] = useState([]);
     const [factures, setFactures] = useState([]);
@@ -43,6 +41,7 @@ const fetchDemandes= async () => {
             if (!res.ok) throw new Error("Erreur fetch demandes");
             const data = await res.json();
             
+            // If it returns an array of demands
             setDemandes(data);
         } catch (error) {
             console.error(error);
@@ -57,6 +56,7 @@ navigate("/requestQuote");
 }
 
 const isAdmin = userRoles.includes("ROLE_ADMIN");
+
 return(
 <div className="flex flex-col min-h-[130vh]">
 <Nav />
@@ -111,7 +111,7 @@ return(
                         <td className="px-4 py-2">{demande.statut!=null ? demande.statut : "--"}</td>
                     <td className="px-4 py-2">
                     {demande.devis_id!=null ? (
-                        <ModalDevis devisId={demande.devis_id} clientNom={demande.nom} clientPrenom={demande.prenom} />
+                        <ModalDevis devisId={demande.devis_id} clientNom={demande.nom} clientPrenom={demande.prenom}/>
                     ) : (
                         "--"
                     )}
