@@ -33,7 +33,7 @@ e.preventDefault();
 
       {/* Contenu principal */}
       <main className="flex-grow">
-        <div className="grid grid-cols-2 max-lg:grid-cols-1 ">
+        <div className="grid grid-cols-2 max-xl:grid-cols-1 ">
           {/* Partie gauche */}
           <div className="ml-5 text-wrap">
             <div id="container">
@@ -51,8 +51,8 @@ e.preventDefault();
             <p className="mt-10  ml-10 text-lg great-vibes-regular">
 Ce site permet de faire une demande de devis concernant des prestations sur une application ou un site web. Nous savons tout faire. Même si vous ne trouvez pas votre bonheur dans les prestations proposées, n’hésitez pas à nous contacter : l’informatique, ça nous connaît !
             </p>
-            <div className="flex gap-5 justify-center mt-20">
-<div className="card">
+            <div className="flex max-lg:flex max-lg:flex-col max-lg:items-center  gap-5 justify-center mt-20">
+<div className="card min-w-70">
   <div className="content">
     <div className="front">
       <h1 className="underline text-2xl font-bold mt-2">Realisation de site</h1>
@@ -64,19 +64,19 @@ Ce site permet de faire une demande de devis concernant des prestations sur une 
     </div>
   </div>
 </div>
-<div className="card">
+<div className="card min-w-70">
   <div className="content">
     <div className="front">
       <h1 className="underline text-2xl font-bold mt-2">Dépannage</h1>
       <p className="mt-2">Si vous rencontrez un bug quelconque</p>
     </div>
-    <div className="back2">
+    <div className="back2 min-w-70">
       <h1 className="mt-2 text-2xl underline">Tarif</h1>
       <p className="mt-5">A partir de 100€ /jours</p>
     </div>
   </div>
 </div>
-<div className="card">
+<div className="card min-w-70">
   <div className="content">
     <div className="front">
       <h1 className="underline text-2xl font-bold mt-2">Maquettage</h1>
@@ -104,12 +104,12 @@ Ce site permet de faire une demande de devis concernant des prestations sur une 
           </div>
 
 {/* Partie droite */}
-<div className="relative w-full max-w-[700px] mt-8 ml-0 sm:ml-5 md:ml-10 lg:ml-20 xl:ml-20">
+<div className="relative w-full max-w-[700px] mt-8 xl:ml-40">
   {/* Image arbre */}
-  <img src="./img/arbre.webp" className="w-full max-w-4xl h-auto ml-0 sm:ml-5 md:ml-10 lg:ml-20 xl:ml-15 border border-white rounded-2xl" />
+  <img src="./img/arbre.webp" className="w-full max-w-4xl h-auto border border-white rounded-2xl"/>
 
   {/* Bloc Contact en overlay (items en ligne) */}
-      <div className="absolute top-15 sm:top-86 sm:-left-5 md:top-80 md:left-2 lg:top-84 lg:left-7 sm:flex justify-center space-x-4 sm:space-x-6 bg-white/30 px-4 py-2 rounded-xl great-vibes-regular text-[var(--color-bordeau)] text-lg " style={{background: '#ffffff30', padding: '5px 48px'}}>
+      <div className="absolute top-15 xl:top-85 max-xl:left-3 xl:left-8 sm:top-86 sm:-left-5 md:top-80 md:left-2 lg:top-75 lg:-left-5 xl:text-sm max-lg:flex max-lg:flex-col xl:flex lg:flex justify-center space-x-4 sm:space-x-6 bg-white/30 px-4 py-2 rounded-xl great-vibes-regular text-[var(--color-bordeau)] text-sm max-xl:text-lg" style={{background: '#ffffff30', padding: '5px 31px'}}>
           <p className="flex items-center">
             <EnvelopeIcon className="mr-2 h-6 w-6 text-[var(--color-bordeau)]" />
             <a href="https://www.msn.com/fr-fr" target="_blank">eMail</a>
