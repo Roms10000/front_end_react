@@ -111,7 +111,7 @@ return(
                         <td className="px-4 py-2">{demande.statut!=null ? demande.statut : "--"}</td>
                     <td className="px-4 py-2">
                     {demande.devis_id!=null ? (
-                        <ModalDevis devisId={demande.devis_id} clientNom={demande.nom} clientPrenom={demande.prenom} onActionComplete={fetchDemandes}/>
+                        <ModalDevis devisId={demande.devis_id} clientNom={demande.nom} clientPrenom={demande.prenom}/>
                     ) : (
                         "--"
                     )}
@@ -136,7 +136,7 @@ return(
                                 <ModalPayPal factureId={demande.factureId} prixtotal={demande.total} />
                             ) : (
                                 demande.paiement === 1 ? (
-                                "A payé"
+                                "Payée"
                                 ) : (
                                 "--"
                                 )
