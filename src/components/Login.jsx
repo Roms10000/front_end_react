@@ -111,19 +111,22 @@ export default function Login () {
               </div>
             </div>
  
-            <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-rose-200 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-rose-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-300 cursor-pointer"
-              >
-                Se connecter
-              </button>
-            </div>
+  <div className="flex justify-center">
+    <button
+      type="submit"
+      className="rounded-md border-2 border-amber-50 w-[380px] h-[50px] relative group overflow-hidden transition-transform duration-300 ease-out hover:scale-110 cursor-pointer"
+      >
+      <div className="bg-rose-200 text-amber-50 w-full h-full flex flex-col justify-center">
+        Se connecter
+      </div>
+      <div className="transition-transform ease-out bg-gray-400 opacity-40 absolute w-[20px] h-[60px] -top-2 -skew-x-12 -translate-x-8 group-hover:translate-x-100">&nbsp;</div>
+    </button>  
+  </div>
           </form>
 
           <p className="mt-10 text-center text-sm/6 text-gray-500">
             Pas encore membre ?{' '}
-            <Link to="/register" className="font-semibold text-rose-200 hover:text-amber-500">
+            <Link to="/register" className="font-semibold text-rose-200 hover:text-rose-300">
               S'inscrire
             </Link>
           </p>

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
-import { FaInstagram,FaLinkedin, FaFacebook } from "react-icons/fa";
+import React, {useState, useEffect} from "react";
+import { FaInstagram,FaLinkedin, FaFacebook,FaArrowLeft } from "react-icons/fa";
 import { EnvelopeIcon, PhoneIcon  } from '@heroicons/react/24/solid';
 import Modal from "./Modal";
 import Modal1 from "./Modal1";
@@ -8,11 +9,22 @@ import Footer from "./Footer";
 
 export default function Home () {
 
+const [isLoggedIn, setIsLoggedIn] = useState(false);
 const navigate = useNavigate();
+
+useEffect(() => {
+  const token = localStorage.getItem("token"); // ou id, roles, etc.
+  if (token) {
+    setIsLoggedIn(true);
+  }
+}, []);
 
 const handleClick = async (e) => {
 e.preventDefault();
-navigate("/requestQuote");
+
+  navigate("/requestQuote");
+
+
 }
   return (
     <div className="flex flex-col min-h-screen">
@@ -21,7 +33,7 @@ navigate("/requestQuote");
 
       {/* Contenu principal */}
       <main className="flex-grow">
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 max-lg:grid-cols-1 ">
           {/* Partie gauche */}
           <div className="ml-5 text-wrap">
             <h1 className="mt-30 font-bold text-5xl flex justify-center great-vibes-regular">
@@ -49,19 +61,23 @@ navigate("/requestQuote");
                 <li>Back end gestion base de données</li>
                 <li>Amélioration performance du site</li>
               </div>
-
+                <div className="flex">
               <button
-                className="cursor-pointer mt-15 text-white bg-rose-200 hover:bg-rose-300 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                type="button"
-                onClick={handleClick}
-              >
+              onClick={handleClick}
+                className="cursor-pointer mt-15 rounded-md border-2 border-amber-50 w-[150px] h-[50px] relative group overflow-hidden 
+                transition-transform duration-300 ease-out hover:scale-110">
+                <div className="bg-rose-200 text-amber-50 w-full h-full flex flex-col justify-center">
                 Faire une demande
+                </div>
+                <div className="transition-transform ease-out bg-gray-400 opacity-40 absolute w-[20px] h-[60px] -top-2 -skew-x-12 -translate-x-8 group-hover:translate-x-40">&nbsp;</div>
               </button>
+              <FaArrowLeft className="text-gray-300 mt-17 ml-3 w-6 h-8 animate-bounce" />
+              </div>
             </div>
           </div>
 
           {/* Partie droite */}
-          <span className="group max-w-sm p-6 ml-70 mt-40 border-b-1-black bg-white border border-gray-900 rounded-lg shadow-sm hover:bg-rose-200">
+          <span className="group max-w-sm p-6 xl:ml-70 lg:ml-30 md:ml-70 sm:ml-35 mt-40 border-b-1-black bg-white border border-gray-900 rounded-lg shadow-sm hover:bg-rose-200 ">
             <div className="flex justify-center ml-30">
               <h5 className="flex justify-center mb-2 text-2xl font-bold tracking-tight text-gray-900 group-hover:text-white great-vibes-regular">
                 Contact
@@ -83,8 +99,8 @@ navigate("/requestQuote");
                 </text>
               </svg>
             </div>
-
-            <div className="space-y-10 mt-12 flex-col justify-center great-vibes-regular">
+            
+            <div className="space-y-10 mt-12 flex-col great-vibes-regular">
               <p className="flex font-normal text-gray-700 group-hover:text-white">
                 <EnvelopeIcon className="mr-2 text-[#ffccd3] group-hover:text-white h-7 w-7" />{" "}
                 <a href="https://www.msn.com/fr-fr" target="_blank">
