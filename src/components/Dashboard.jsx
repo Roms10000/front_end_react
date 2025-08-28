@@ -12,11 +12,11 @@ export default function Dashboard ({Id}) {
 
     const [demandes, setDemandes] = useState([]);
     const [userRoles, setUserRoles] = useState([]);
-    const [factures, setFactures] = useState([]);
     const navigate = useNavigate();
-  useEffect(() => {
+useEffect(() => {
 
 const userId = localStorage.getItem("id");
+console.log(userId);
 const roleString = localStorage.getItem("roles")
 let roles = [];
     try {
@@ -28,7 +28,7 @@ let roles = [];
     }
     setUserRoles(roles);
 
-    if (!userId || roles.length === 0) {
+    if (!userId) {
         console.log("Utilisateur non trouvable");
         navigate("/login");
         return;
@@ -119,11 +119,11 @@ return(
                         <td className="px-4 py-2">
                         {demande.facture!=null ? (
                                 <a
-                                  key={demande.facture}
-                                  href={`http://localhost:8000${demande.facture}`} // chemin vers le PDF
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-rose-300 underline"
+                                    key={demande.facture}
+                                    href={`http://localhost:8000${demande.facture}`} // chemin vers le PDF
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-rose-300 underline"
                                 >
                                 Voir la facture
                                 </a>
