@@ -3,10 +3,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inconsolata:wdth,wght@95.9,558&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto:700');
 
-body {
+/* body {
   margin:0px;
   text-align:center;
-}
+} */
 
 #container {
   color:#000000;
@@ -15,6 +15,7 @@ body {
   font-size:36px;
   font-weight:bold;
   display:block;
+
 }
 
 #flip {
@@ -25,7 +26,7 @@ body {
 #flip > div > div {
   color:#000000;
   padding: 2px 20px;
-  height:45px;
+  height: 45px;;
   margin-bottom:45px;
   display:inline-block;
 }

@@ -1,7 +1,7 @@
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import React, { useState } from 'react';
 
-export default function Checkout({handleClosePayement, prixtotal, handlePaiementTrue }) {
+export default function Checkout({ prixtotal, handlePaiementTrue }) {
 
     const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
     const [currency, setCurrency] = useState(options.currency);
@@ -30,10 +30,11 @@ export default function Checkout({handleClosePayement, prixtotal, handlePaiement
 
     const onApproveOrder = (data,actions) => {
         return actions.order.capture().then((details) => {
-        const name = details.payer.name.given_name;
-            alert(`Transaction completed by ${name} `);
+        // const name = details.payer.name.given_name;
+        // alert('blabla');
             handlePaiementTrue();
-            handleClosePayement();
+            // handleClosePayement();
+            
         });
     }
 

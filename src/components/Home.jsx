@@ -53,19 +53,19 @@ e.preventDefault();
               prestations sur une application ou un site web. Nous savons tous faire , meme si vous ne trouvez pas votre bonheur dans les prestations proposés hésiter pas à nous contacter , l'informatique ca nous connait !
             </p>
             <div className="flex gap-5 mt-10">
-                <a class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Réalisation de site complet</h5>
-                <p class="font-normal text-gray-700 dark:text-gray-400">Nous pouvons vous éditer un site vitrine ou un site e-commerce.</p>
+                <a className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Réalisation de site complet</h5>
+                <p className="font-normal text-gray-700 dark:text-gray-400">Nous pouvons vous éditer un site vitrine ou un site e-commerce.</p>
                 <button type="button" className="bg-gray-200 mt-2 p-2">A partir de 500€</button>
                 </a>
-                <a class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Dépannage de votre site</h5>
-                <p class="font-normal text-gray-700 dark:text-gray-400">Si vous avez nimporte qu'elle bug, apellez nous !</p>
+                <a className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Dépannage de votre site</h5>
+                <p className="font-normal text-gray-700 dark:text-gray-400">Si vous avez nimporte qu'elle bug, apellez nous !</p>
                 <button type="button" className="bg-gray-200 mt-2 p-2">A partir de 600€</button>
                 </a>
-                <a class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Réalisation d'une maquette</h5>
-                <p class="font-normal text-gray-700 dark:text-gray-400">Nous pouvons vous éditer une simple maquette de site</p>
+                <a className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg">
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Réalisation d'une maquette</h5>
+                <p className="font-normal text-gray-700 dark:text-gray-400">Nous pouvons vous éditer une simple maquette de site</p>
                 <button type="button" className="bg-gray-200 mt-2 p-2">A partir de 300€</button>
                 </a>
             </div>

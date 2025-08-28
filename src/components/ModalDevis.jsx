@@ -14,7 +14,8 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, onActionCo
 
   const developpeurData = {
     nom: "Pdev",
-    adresse: "32 rue des tulipes, 85092 , Fontenay-le-comte",
+    adresse1: "32 rue des tulipes",
+    adresse2: "85092 Fontenay-le-comte",
     email: "Pdev@contact.com",
     telephone: "03.25.25.11.63",
   };
@@ -39,7 +40,6 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, onActionCo
           throw new Error("La collection de devis est vide.");
         }
 
-
         const firstDevis = apiData;
         const formattedData = {
           developpeur: developpeurData,
@@ -47,7 +47,7 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, onActionCo
           client: firstDevis.demande.client,
           devis: {
             numero: firstDevis.numero,
-            date: firstDevis.date_devis,
+            date: firstDevis.dateDevis,
             prestations: firstDevis.devisPrestations,
             total: firstDevis.total,
             statut: firstDevis.statut
@@ -149,13 +149,13 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, onActionCo
   }
 };
 
-  if (loading) {
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center  text-white text-xl">
-        Chargement...
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="fixed inset-0 z-50 flex items-center justify-center  text-white text-xl">
+  //       Chargement...
+  //     </div>
+  //   );
+  // }
 
   if (error) {
     return (
@@ -167,13 +167,13 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, onActionCo
   
   const data = devisData;
 
-  if (!data || !data.devis || !data.devis.prestations) {
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center  text-white text-xl">
-        Aucune donnée de devis ou de prestations trouvée.
-      </div>
-    );
-  }
+  // if (!data || !data.devis || !data.devis.prestations) {
+  //   return (
+  //     <div className="fixed inset-0 z-50 flex items-center justify-center  text-white text-xl">
+  //       Aucune donnée de devis ou de prestations trouvée.
+  //     </div>
+  //   );
+  // }
 
 const ModalContent = () => (
     <div 
@@ -199,10 +199,11 @@ const ModalContent = () => (
           <div className="flex justify-between mb-6">
             <div className="text-gray-600 dark:text-gray-400">
               <p className="font-semibold text-gray-900 dark:text-white">{data.developpeur?.nom}</p>
-              <p>{data.developpeur?.adresse}</p>
+              <p>{data.developpeur?.adresse1}</p>
+              <p>{data.developpeur?.adresse2}</p>
               <p>{data.developpeur?.email}</p>
               <p>{data.developpeur?.telephone}</p>
-              <p className="mt-4">Date : <span className="font-bold">{data.devis?.date_devis ? new Date(data.devis.date_devis).toLocaleDateString('fr-FR') : ''}</span></p>
+              <p className="mt-4">Date : <span className="font-bold">{data.devis?.date ? new Date(data.devis.date).toLocaleDateString('fr-FR') : ''}</span></p>
               <p>N° Devis : <span className="font-bold">DEV{data.devis?.numero}</span></p>
             </div>
             <div className="text-right text-gray-600">
