@@ -50,31 +50,52 @@ e.preventDefault();
             </h2>
             <p className="mt-10  ml-10 text-lg great-vibes-regular">
               Ce site permet de faire une demande de devis concernant des
-              prestations sur une application ou un site web. Nous savons tous faire , meme si vous ne trouvez pas votre bonheur dans les prestations proposés hésiter pas à nous contacter , l'informatique ca nous connait !
+              prestations sur une application ou un site web. Nous savons tous faire , meme si vous ne trouvez pas votre bonheur dans les prestations proposés hésiter pas à nous contacter, l'informatique ca nous connait !
             </p>
-            <div className="flex gap-5 mt-10">
-                <a className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Réalisation de site complet</h5>
-                <p className="font-normal text-gray-700 dark:text-gray-400">Nous pouvons vous éditer un site vitrine ou un site e-commerce.</p>
-                <button type="button" className="bg-gray-200 mt-2 p-2">A partir de 500€</button>
-                </a>
-                <a className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Dépannage de votre site</h5>
-                <p className="font-normal text-gray-700 dark:text-gray-400">Si vous avez nimporte qu'elle bug, apellez nous !</p>
-                <button type="button" className="bg-gray-200 mt-2 p-2">A partir de 600€</button>
-                </a>
-                <a className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Réalisation d'une maquette</h5>
-                <p className="font-normal text-gray-700 dark:text-gray-400">Nous pouvons vous éditer une simple maquette de site</p>
-                <button type="button" className="bg-gray-200 mt-2 p-2">A partir de 300€</button>
-                </a>
+            <div className="flex gap-5 justify-center mt-20">
+<div className="card">
+  <div className="content">
+    <div className="front">
+      <h1 className="underline text-2xl font-bold mt-2">Realisation de site</h1>
+      <p className="mt-2">Que ce soit pour de sites e-commerce, site vitrine ...</p>
+    </div>
+    <div className="back">
+      <h1 className="mt-2 text-2xl underline">Tarif</h1>
+      <p className="mt-5">600€ /jours</p>
+    </div>
+  </div>
+</div>
+<div className="card">
+  <div className="content">
+    <div className="front">
+      <h1 className="underline text-2xl font-bold mt-2">Dépannage</h1>
+      <p className="mt-2">Si vous rencontrez un bug quelconque</p>
+    </div>
+    <div className="back">
+      <h1 className="mt-2 text-2xl underline">Tarif</h1>
+      <p className="mt-5">300€ /jours</p>
+    </div>
+  </div>
+</div>
+<div className="card">
+  <div className="content">
+    <div className="front">
+      <h1 className="underline text-2xl font-bold mt-2">Maquettage</h1>
+      <p className="mt-2">Si vous voulez simplement une maquette pour deisgner votre site </p>
+    </div>
+    <div className="back">
+      <h1 className="mt-2 text-2xl underline">Tarif</h1>
+      <p className="mt-5">150€ la maquette</p>
+    </div>
+  </div>
+</div>
             </div>
                 <div className="flex justify-center">
               <button
               onClick={handleClick}
                 className="cursor-pointer mt-15 rounded-md border-2 border-amber-50 w-[150px] h-[50px] relative group overflow-hidden 
                 transition-transform duration-300 ease-out hover:scale-110">
-                <div className="bg-rose-300 text-amber-50 w-full h-full flex flex-col justify-center">
+                <div className="bg-rose-300 text-[var(--color-bordeau)] w-full h-full flex flex-col justify-center">
                 Faire une demande
                 </div>
                 <div className="transition-transform ease-out bg-gray-400 opacity-40 absolute w-[20px] h-[60px] -top-2 -skew-x-12 -translate-x-8 group-hover:translate-x-40">&nbsp;</div>
