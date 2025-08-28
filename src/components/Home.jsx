@@ -135,7 +135,7 @@ Ce site permet de faire une demande de devis concernant des prestations sur une 
               <div className="mt-20 font-bold text-lg flex justify-center great-vibes-regular">Les entreprises avec lesquels nous avons travaillés :</div>
                 <div className="flex flex-wrap justify-center gap-10 mt-6">
                   <div className="flex flex-col items-center">
-                    <img src="./img/riz.webp" className="h-20"/>
+                    <img src="./img/chevalriz.png" className="h-20"/>
                     <Modal />
                   </div>
                   <div className="flex flex-col items-center">
