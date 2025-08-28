@@ -64,7 +64,7 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, onActionCo
     };
 
     fetchDevisData();
-  }, []);
+  }, [devisId]);
 
 
   const handleToggleModal = () => {
@@ -167,14 +167,14 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, onActionCo
   
   const data = devisData;
 
-  // if (!data || !data.devis || !data.devis.prestations) {
-  //   return (
-  //     <div className="fixed inset-0 z-50 flex items-center justify-center  text-white text-xl">
-  //       Aucune donnée de devis ou de prestations trouvée.
-  //     </div>
-  //   );
-  // }
-
+ /*  if (!data || !data.devis || !data.devis.prestations) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center  text-white text-xl">
+        Aucune donnée de devis ou de prestations trouvée.
+      </div>
+    );
+  }
+ */
 const ModalContent = () => (
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70 backdrop-blur-sm p-4"
