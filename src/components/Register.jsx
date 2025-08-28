@@ -36,7 +36,14 @@ export default function Register() {
       if (!res.ok) throw new Error("Erreur serveur");
 
       const data = await res.json();
-      console.log("Réponse API:", data);
+
+
+      const fullName = `${data.user.prénom} ${data.user.nom}`;
+      // ✅ Stocker le token en localStorage pour être connecté direct
+      if (data.token) {
+        localStorage.setItem("authToken", data.token);
+        localStorage.setItem("userName", fullName);
+      }
 
       navigate("/");
     } catch (error) {

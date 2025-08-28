@@ -15,7 +15,6 @@ export default function RequestQuote() {
 
 
   const adaptCategories = (data) => {
-    console.log("Data reçue dans adaptCategories :", data);
     return data.map((cat) => ({
       id: cat.id,
       nom: cat.nom
@@ -25,7 +24,6 @@ export default function RequestQuote() {
   useEffect(() => {
     const userId = localStorage.getItem("id");
     if (!userId) {
-      console.log("Utilisateur non trouvable");
       navigate("/login");
       return;
   }
@@ -36,7 +34,6 @@ export default function RequestQuote() {
         if (!res.ok) throw new Error("Erreur fetch catégories");
         const data = await res.json();
         
-        console.log(data.member);
         setCategories(adaptCategories(data.member));
       } catch (error) {
         console.error(error);
@@ -50,7 +47,6 @@ export default function RequestQuote() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userId = localStorage.getItem("id");
-    console.log(userId);
 
     try {
       const res = await fetch("http://localhost:8000/api/demandes", {
@@ -71,7 +67,7 @@ export default function RequestQuote() {
       if (!res.ok) throw new Error("Erreur serveur");
 
       const data = await res.json();
-      console.log("Réponse API:", data);
+
 
       navigate("/dashboard");
     } catch (error) {

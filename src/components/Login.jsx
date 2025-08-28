@@ -26,13 +26,13 @@ export default function Login () {
         if (!res.ok) {
             const errorData = await res.json();
             if (res.status === 401) {
-              throw new Error("Email ou mot de passe incorrect.");
+              alert("Email ou mot de passe incorrect.");
             }
             throw new Error(errorData.message || "Erreur serveur");
         }
         
         const data = await res.json();
-        console.log("Réponse API:", data);
+
 
         // Stocker le token ET le nom de l'utilisateur et 'id' dans le localStorage
         if (data.token && data.id && data.user && data.user.roles) {
@@ -54,7 +54,7 @@ export default function Login () {
         console.error("Erreur fetch:", err);
         setError(err.message);
       }
-        console.log('data.user.roles');
+
 
     };
     return (
