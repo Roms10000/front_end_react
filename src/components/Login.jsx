@@ -25,11 +25,14 @@ export default function Login () {
 
         if (!res.ok) {
             const errorData = await res.json();
+            if (res.status === 401) {
+              alert("Email ou mot de passe incorrect.");
+            }
             throw new Error(errorData.message || "Erreur serveur");
         }
         
         const data = await res.json();
-        console.log("Réponse API:", data);
+
 
         // Stocker le token ET le nom de l'utilisateur et 'id' dans le localStorage
         if (data.token && data.id && data.user && data.user.roles) {
@@ -49,9 +52,9 @@ export default function Login () {
         }
       } catch (err) {
         console.error("Erreur fetch:", err);
-        setError("Impossible de se connecter !");
+        setError(err.message);
       }
-       
+
 
     };
     return (
@@ -116,7 +119,7 @@ export default function Login () {
       type="submit"
       className="rounded-md border-2 border-amber-50 w-[380px] h-[50px] relative group overflow-hidden transition-transform duration-300 ease-out hover:scale-110 cursor-pointer"
       >
-      <div className="bg-rose-300 text-amber-50 w-full h-full flex flex-col justify-center">
+      <div className="bg-rose-300 text-[var(--color-bordeau)] w-full h-full flex flex-col justify-center">
         Se connecter
       </div>
       <div className="transition-transform ease-out bg-gray-400 opacity-40 absolute w-[20px] h-[60px] -top-2 -skew-x-12 -translate-x-8 group-hover:translate-x-100">&nbsp;</div>

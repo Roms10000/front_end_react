@@ -15,7 +15,6 @@ export default function RequestQuote() {
 
 
   const adaptCategories = (data) => {
-    console.log("Data reçue dans adaptCategories :", data);
     return data.map((cat) => ({
       id: cat.id,
       nom: cat.nom
@@ -25,7 +24,6 @@ export default function RequestQuote() {
   useEffect(() => {
     const userId = localStorage.getItem("id");
     if (!userId) {
-      console.log("Utilisateur non trouvable");
       navigate("/login");
       return;
   }
@@ -36,7 +34,6 @@ export default function RequestQuote() {
         if (!res.ok) throw new Error("Erreur fetch catégories");
         const data = await res.json();
         
-        console.log(data.member);
         setCategories(adaptCategories(data.member));
       } catch (error) {
         console.error(error);
@@ -50,7 +47,6 @@ export default function RequestQuote() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userId = localStorage.getItem("id");
-    console.log(userId);
 
     try {
       const res = await fetch("http://localhost:8000/api/demandes", {
@@ -71,7 +67,7 @@ export default function RequestQuote() {
       if (!res.ok) throw new Error("Erreur serveur");
 
       const data = await res.json();
-      console.log("Réponse API:", data);
+
 
       navigate("/dashboard");
     } catch (error) {
@@ -163,7 +159,7 @@ export default function RequestQuote() {
       type="submit"
       className="rounded-md border-2 border-amber-50 w-[380px] h-[50px] relative group overflow-hidden transition-transform duration-300 ease-out hover:scale-110 cursor-pointer"
       >
-      <div className="bg-rose-200 text-amber-50 w-full h-full flex flex-col justify-center">
+      <div className="bg-rose-200 text-[var(--color-bordeau)] w-full h-full flex flex-col justify-center">
         Envoyer la demande
       </div>
       <div className="transition-transform ease-out bg-gray-400 opacity-40 absolute w-[20px] h-[60px] -top-2 -skew-x-12 -translate-x-8 group-hover:translate-x-100">&nbsp;</div>
