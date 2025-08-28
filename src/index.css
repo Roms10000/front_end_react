@@ -37,7 +37,7 @@
   background:#9c73b4;
 }
 #flip div:first-child div {
-  background:#e4e6eb;
+  background: #b54158;
 }
 #flip div:last-child div {
   background:#ffa1ad;
@@ -94,7 +94,9 @@
 }
 
 .front,
-.back {
+.back,
+.back1,
+.back2 {
   font-family:"great-vibes-regular" ;
   position: absolute;
   height: 100%;
@@ -108,7 +110,17 @@
 }
 
 .back {
-  background: #ffa1ad;
-  color: #b54158;
+  background:  #9c73b4;
+  color: #ffffff;
+  transform: rotateY(180deg);
+}
+.back1 {
+  background:  #B44057;
+  color: #ffffff;
+  transform: rotateY(180deg);
+}
+.back2 {
+  background:  #ffa1ad;
+  color: #ffffff;
   transform: rotateY(180deg);
 }
