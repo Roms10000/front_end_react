@@ -74,22 +74,24 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, onActionCo
   const handleStatutAccept = async (e) => {
     e.preventDefault();
      try {
-      const response = await fetch(`http://localhost:8000/api/devis/${devisId}`, {
-      method: "PATCH",
+      const response = await fetch(`http://localhost:8000/api/devis/${devisId}/accept`, {
+      method: "POST",
       headers: {
-        "Content-Type": "application/merge-patch+json",
+        
         "Accept": "application/ld+json",
       },
-      body: JSON.stringify({
-        statut: "Accepter",
-      }),
+      
     });
+     
+    const data = await response . json();
 
+    const factureId = data.factureId;
+    fetch()
     if (!response.ok) {
       throw new Error(`Erreur API : ${response.status}`);
     }
 
-    alert("Le devis a été accepté et son statut mis à jour !");
+    alert("Le devis a été accepté et la facture générée !");
     setActionDone(true); 
     setShowModal(false);
 
@@ -111,7 +113,7 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, onActionCo
  const handleStatutCancel = async (e) => {
     e.preventDefault();
      try {
-      const response = await fetch(`http://localhost:8000/api/devis/${devisId}`, {
+      const response = await fetch(`http://localhost:8000/api/devis/${devisId}/refuse`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/merge-patch+json",
@@ -134,7 +136,7 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, onActionCo
       if (onActionComplete) {
         onActionComplete();
       }
-      
+
     setTimeout(() => {
     window.location.reload();
     }, 1000);
