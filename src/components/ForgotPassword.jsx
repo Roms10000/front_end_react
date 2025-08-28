@@ -56,7 +56,7 @@ e.preventDefault();
   className="rounded-md border-2 border-amber-50 w-[390px] h-[50px] relative group overflow-hidden 
              transition-transform duration-300 ease-out hover:scale-110 cursor-pointer"
 >
-  <div className="bg-rose-200 text-amber-50 w-full h-full flex flex-col justify-center">
+  <div className="bg-rose-300 text-amber-50 w-full h-full flex flex-col justify-center">
     Demander une réinitialisation de mots de passe
   </div>
   <div className="transition-transform ease-out bg-gray-400 opacity-40 absolute w-[20px] h-[60px] -top-2 -skew-x-12 -translate-x-8 group-hover:translate-x-110">&nbsp;</div>

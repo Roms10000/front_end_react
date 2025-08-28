@@ -11,7 +11,7 @@ export default function Modal1() {
   className="rounded-md border-2 border-amber-50 w-[100px] h-[50px] relative group overflow-hidden 
              transition-transform duration-300 ease-out hover:scale-110 cursor-pointer"
 >
-  <div className="bg-rose-200 text-amber-50 w-full h-full flex flex-col justify-center">
+  <div className="bg-rose-300 text-amber-50 w-full h-full flex flex-col justify-center">
     Avis 2
   </div>
   <div className="transition-transform ease-out bg-gray-400 opacity-40 absolute w-[20px] h-[60px] 
@@ -39,7 +39,7 @@ export default function Modal1() {
                     <span className="sr-only">Close modal</span>
                 </button>
             </div>
-            <img src="/img/message2.PNG"   alt="message2" className="w-full h-auto max-h-[70vh] object-contain rounded-lg"/>
+            <img src="/img/message2.png"   alt="message2" className="w-full h-auto max-h-[70vh] object-contain rounded-lg"/>
             </div>
         </div>
     )}
