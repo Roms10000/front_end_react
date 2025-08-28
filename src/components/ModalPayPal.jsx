@@ -26,6 +26,7 @@ export default function ModalPayPal({prixtotal, factureId}) {
                     paiement: true,
                 }),
                 });
+                parent.location="http://localhost:5173/dashboard";
             } catch (err) {
             alert("Impossible de mettre à jour le statut de la facture.");
             }
