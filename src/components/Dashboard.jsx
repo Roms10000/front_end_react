@@ -77,8 +77,11 @@ return(
               </button>
         </div>
 
-        <div className="flex justify-center">
-            <table className="w-400 border border-gray-900 text-sm text-gray-900">
+        <div className="flex justify-center max-w-full">
+            <div className="scroll-table w-full">
+
+            
+            <table className="min-w-full border border-gray-900 text-sm text-gray-900">
                 <thead className="bg-gray-200 text-gray-900">
                     <tr>
                         <th className="px-4 py-2 text-left">n° de demande</th>
@@ -100,7 +103,7 @@ return(
                 {demandes.map((demande) => (
                     <tr key={demande.id} className="border-t hover:bg-gray-50">
                         <td className="px-4 py-2">{demande.id}</td>
-                        <td className="px-4 py-2">{demande.description}</td>
+                        <td className="px-4 py-2 break-words whitespace-normal max-w-xs"><div className="max-h-24 overflow-y-auto">{demande.description}</div></td>
                         {isAdmin && (
                                 <>
                                     <td className="px-4 py-2">{demande.nom}</td>
@@ -147,6 +150,7 @@ return(
                 </tbody>
             </table>
             </div>
+        </div>
     </div>
 </main>
 <Footer/>
