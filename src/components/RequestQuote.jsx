@@ -23,11 +23,16 @@ export default function RequestQuote() {
 
   useEffect(() => {
     const userId = localStorage.getItem("id");
+    const userFirstname = localStorage.getItem("userFirstname");
+    const userLastname = localStorage.getItem("userLastname");
     if (!userId) {
       navigate("/login");
       return;
   }
   
+  setNom(userLastname || "");
+  setPrenom(userFirstname || "");
+
     const fetchCategories = async () => {
       try {
         const res = await fetch("http://localhost:8000/api/categories");
@@ -104,7 +109,7 @@ export default function RequestQuote() {
                   name="nom"
                   type="text"
                   required
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-rose-200 sm:text-sm/6"  value={nom} onChange={(e)=> setNom(e.target.value)}
+                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-rose-200 sm:text-sm/6"  value={nom} onChange={(e)=> setNom(e.target.value)} disabled
                 />
               </div>
             </div>
@@ -118,13 +123,13 @@ export default function RequestQuote() {
                   name="prénom"
                   type="text"
                   required
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300  focus:outline-2 focus:-outline-offset-2 focus:outline-rose-200 sm:text-sm/6"  value={prenom} onChange={(e)=> setPrenom(e.target.value)}
+                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300  focus:outline-2 focus:-outline-offset-2 focus:outline-rose-200 sm:text-sm/6"  value={prenom} onChange={(e)=> setPrenom(e.target.value)} disabled
                 />
               </div>
             </div>
                         <div>
               <label htmlFor="description" className="block text-sm/6 font-medium text-gray-900">
-                Description
+                Description (Mettez vos coordonnées)
               </label>
               <div className="mt-2">
                 <textarea

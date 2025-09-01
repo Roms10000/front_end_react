@@ -7,6 +7,7 @@ import Modal1 from "./Modal1";
 import Nav from "./Nav";
 import Footer from "./Footer";
 
+
 export default function Home () {
 
 const [isLoggedIn, setIsLoggedIn] = useState(false);

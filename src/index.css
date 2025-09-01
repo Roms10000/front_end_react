@@ -125,6 +125,19 @@
   transform: rotateY(180deg);
 }
 
+@media (max-width: 875px) {
+  .scroll-table {
+    overflow-x: auto;
+    display: block;
+  }
+}
+
+@media (min-width: 876px) {
+  .scroll-table {
+    overflow: visible;
+  }
+}
+
 @theme {
   --breakpoint-375: 375px;
   --breakpoint-425: 425px;

@@ -38,7 +38,9 @@ export default function Login () {
         if (data.token && data.id && data.user && data.user.roles) {
           const fullName = `${data.user.prénom} ${data.user.nom}`;
           localStorage.setItem("authToken", data.token); 
-          localStorage.setItem("id", data.id); 
+          localStorage.setItem("id", data.id);
+          localStorage.setItem("userLastname", data.user.nom); 
+          localStorage.setItem("userFirstname", data.user.prénom);
           localStorage.setItem("userName", fullName);     
           localStorage.setItem("roles", JSON.stringify(data.user.roles)); // Convertir le tableau  roles en chaîne JSON
         

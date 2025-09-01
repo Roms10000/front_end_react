@@ -41,8 +41,10 @@ export default function Register() {
       const fullName = `${data.user.prénom} ${data.user.nom}`;
       // ✅ Stocker le token en localStorage pour être connecté direct
       if (data.token) {
+        localStorage.setItem("id", data.user.id);
         localStorage.setItem("authToken", data.token);
         localStorage.setItem("userName", fullName);
+
       }
 
       navigate("/");
