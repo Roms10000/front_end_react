@@ -111,7 +111,7 @@ Ce site permet de faire une demande de devis concernant des prestations sur une 
   <img src="./img/arbre.webp" className="w-lg h-auto border border-white rounded-2xl"/>
 </div>
   {/* Bloc Contact en overlay (items en ligne) */}
-      <div className="absolute top-15 1400:left-70 1400:top-60 xl:text-sm lg:top-55 lg:left-65 md:top-18 375:top-8 md:left-40 max-lg:gap-8 max-lg:flex max-lg:flex-col xl:flex lg:flex justify-center space-x-4 sm:space-x-6 bg-white/30 px-4 py-2 rounded-xl great-vibes-regular text-[var(--color-bordeau)] text-sm" style={{background: '#ffffff30', padding: '5px 31px'}}>
+      <div className="absolute flex flex-col gap-4 left-2 top-10 375:top-13 425:top-19 md:left-30 md:top-21 md:gap-6 lg:left-65 lg:top-55 lg:gap-1 lg:flex-row xl:flex-row xl:left-18 1400:left-57 space-x-4 bg-white/30 px-4 py-2 rounded-xl great-vibes-regular text-[var(--color-bordeau)] text-sm" style={{background: '#ffffff30', padding: '5px 31px'}}>
           <p className="flex items-center">
             <EnvelopeIcon className="mr-2 h-6 w-6 text-[var(--color-bordeau)]" />
             <a href="https://www.msn.com/fr-fr" target="_blank">eMail</a>
@@ -129,8 +129,8 @@ Ce site permet de faire une demande de devis concernant des prestations sur une 
             <a href="https://hazemgherissi.com/" target="_blank">Facebook</a>
             </p>
             </div>
-            <div className="ml-0 1400:ml-40">
-              <div className="mt-20 font-bold text-lg flex justify-center great-vibes-regular ">Les entreprises avec lesquels nous avons travaillés :</div>
+            <div className="flex flex-col justify-center">
+              <div className="mt-20 font-bold text-lg flex justify-center great-vibes-regular">Les entreprises avec lesquels nous avons travaillés :</div>
                 <div className="flex flex-wrap justify-center gap-10 mt-6">
                   <div className="flex flex-col items-center">
                     <img src="./img/chevalriz.png" className="h-20"/>
