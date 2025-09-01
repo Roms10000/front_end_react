@@ -129,7 +129,7 @@ export default function RequestQuote() {
             </div>
                         <div>
               <label htmlFor="description" className="block text-sm/6 font-medium text-gray-900">
-                Description
+                Description (Mettez vos coordonnées)
               </label>
               <div className="mt-2">
                 <textarea

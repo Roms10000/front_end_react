@@ -16,7 +16,7 @@ export default function Dashboard ({Id}) {
 useEffect(() => {
 
 const userId = localStorage.getItem("id");
-console.log(userId);
+
 const roleString = localStorage.getItem("roles")
 let roles = [];
     try {
