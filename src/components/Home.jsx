@@ -34,7 +34,7 @@ e.preventDefault();
 
       {/* Contenu principal */}
       <main className="flex-grow">
-        <div className="grid grid-cols-[60%_40%] max-xl:grid-cols-1 ">
+        <div className="grid grid-cols-[60%_40%] max-1400:grid-cols-1 ">
           {/* Partie gauche */}
           <div className="ml-5 text-wrap">
             <div id="container">
@@ -105,29 +105,36 @@ Ce site permet de faire une demande de devis concernant des prestations sur une 
           </div>
 
 {/* Partie droite */}
-<div className="relative w-full mt-8 flex flex-col">
-  {/* Image arbre */}
-  <div className="flex justify-center">
-  <img src="./img/arbre.webp" className="w-lg h-auto border border-white rounded-2xl"/>
-</div>
+<div className="relative w-full mt-8 flex flex-col items-center">
   {/* Bloc Contact en overlay (items en ligne) */}
-      <div className="absolute flex flex-col gap-4 left-2 top-10 375:top-13 425:top-19 md:left-30 md:top-21 md:gap-6 lg:left-65 lg:top-55 lg:gap-1 lg:flex-row xl:flex-row xl:left-18 1400:left-57 space-x-4 bg-white/30 px-4 py-2 rounded-xl great-vibes-regular text-[var(--color-bordeau)] text-sm" style={{background: '#ffffff30', padding: '5px 31px'}}>
-          <p className="flex items-center">
-            <EnvelopeIcon className="mr-2 h-6 w-6 text-[var(--color-bordeau)]" />
-            <a href="https://www.msn.com/fr-fr" target="_blank">eMail</a>
-          </p>
-          <p className="flex items-center">
-            <PhoneIcon className="mr-2 h-6 w-6 text-[var(--color-bordeau)]" />
-            <span>03.25.25.11.63</span>
-          </p>
-          <p className="flex items-center">
-            <FaLinkedin size={24} className="mr-2 text-[var(--color-bordeau)]" />
-            <a href="https://www.linkedin.com/in/romain-richardon-4b8083245/" target="_blank">LinkedIn</a>
-          </p>
-          <p className="flex items-center">
-            <FaFacebook size={24} className="mr-2 text-[var(--color-bordeau)]" />
-            <a href="https://hazemgherissi.com/" target="_blank">Facebook</a>
+    <div className="flex items-end min-md:justify-center rounded-xl"
+    style={{
+    backgroundImage: `url("./img/arbre.webp")`,
+    backgroundSize: "cover",     // pour que l'image couvre tout le div
+    backgroundPosition: "center", // pour centrer l'image
+    backgroundRepeat: "no-repeat", // pour ne pas répéter l'image
+    width: "95%",               // largeur
+    height: "400px",             // hauteur
+  }}>
+        <div className="flex max-md:flex-col max-md:w-50 min-md:w-250 justify-between mb-20 mx-2 px-5 py-1 gap-10 bg-white/30 rounded-xl great-vibes-regular text-[var(--color-bordeau)] text-sm" style={{background: '#ffffff30'}}>
+            <p className="flex items-center">
+              <EnvelopeIcon className="mr-2 h-6 w-6 text-[var(--color-bordeau)]" />
+              <a href="https://www.msn.com/fr-fr" target="_blank">eMail</a>
             </p>
+            <p className="flex items-center">
+              <PhoneIcon className="mr-2 h-6 w-6 text-[var(--color-bordeau)]" />
+              <span>03.25.25.11.63</span>
+            </p>
+            <p className="flex items-center">
+              <FaLinkedin size={24} className="mr-2 text-[var(--color-bordeau)]" />
+              <a href="https://www.linkedin.com/in/romain-richardon-4b8083245/" target="_blank">LinkedIn</a>
+            </p>
+            <p className="flex items-center">
+              <FaFacebook size={24} className="mr-2 text-[var(--color-bordeau)]" />
+              <a href="https://hazemgherissi.com/" target="_blank">Facebook</a>
+              </p>
+              </div>
+
             </div>
             <div className="flex flex-col justify-center">
               <div className="mt-20 font-bold text-lg flex justify-center great-vibes-regular">Les entreprises avec lesquels nous avons travaillés :</div>
