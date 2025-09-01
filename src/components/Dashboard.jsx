@@ -78,7 +78,7 @@ return(
         </div>
 
         <div className="flex justify-center max-w-full">
-            <div className="scroll-table w-full">
+            <div className="px-2 scroll-table w-full">
 
             
             <table className="min-w-full border border-gray-900 text-sm text-gray-900">
