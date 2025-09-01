@@ -34,7 +34,7 @@ e.preventDefault();
 
       {/* Contenu principal */}
       <main className="flex-grow">
-        <div className="grid grid-cols-[60%_40%] max-1400:grid-cols-1 ">
+        <div className="grid grid-cols-[60%_40%] max-lg:grid-cols-1 ">
           {/* Partie gauche */}
           <div className="ml-5 text-wrap">
             <div id="container">
@@ -52,8 +52,8 @@ e.preventDefault();
             <p className="mt-10 ml-10 425:ml-0 text-lg great-vibes-regular">
 Ce site permet de faire une demande de devis concernant des prestations sur une application ou un site web. Nous savons tout faire. Même si vous ne trouvez pas votre bonheur dans les prestations proposées, n’hésitez pas à nous contacter : l’informatique, ça nous connaît !
             </p>
-            <div className="flex max-2xl:flex-col max-2xl:items-center gap-5 justify-center mt-20">
-<div className="card min-w-70">
+            <div className="flex max-xl:flex-col max-xl:items-center gap-5 justify-center mt-20">
+<div className="card min-w-60">
   <div className="content">
     <div className="front">
       <h1 className="underline text-2xl font-bold mt-2">Realisation de site</h1>
@@ -65,19 +65,19 @@ Ce site permet de faire une demande de devis concernant des prestations sur une 
     </div>
   </div>
 </div>
-<div className="card min-w-70">
+<div className="card min-w-60">
   <div className="content">
     <div className="front">
       <h1 className="underline text-2xl font-bold mt-2">Dépannage</h1>
       <p className="mt-2">Si vous rencontrez un bug quelconque</p>
     </div>
-    <div className="back2 min-w-70">
+    <div className="back2 min-w-60">
       <h1 className="mt-2 text-2xl underline">Tarif</h1>
       <p className="mt-5">A partir de 100€ /jours</p>
     </div>
   </div>
 </div>
-<div className="card min-w-70">
+<div className="card min-w-60">
   <div className="content">
     <div className="front">
       <h1 className="underline text-2xl font-bold mt-2">Maquettage</h1>
@@ -116,7 +116,7 @@ Ce site permet de faire une demande de devis concernant des prestations sur une 
     width: "95%",               // largeur
     height: "400px",             // hauteur
   }}>
-        <div className="flex max-md:flex-col max-md:w-50 min-md:w-250 justify-between mb-20 mx-2 px-5 py-1 gap-10 bg-white/30 rounded-xl great-vibes-regular text-[var(--color-bordeau)] text-sm" style={{background: '#ffffff30'}}>
+        <div className="flex max-md:flex-col min-lg:flex-col xl:flex-row max-md:w-50 min-md:w-250 justify-between mb-20 mx-2 px-5 py-1 gap-10 bg-white/30 rounded-xl great-vibes-regular text-[var(--color-bordeau)] text-sm" style={{background: '#ffffff30'}}>
             <p className="flex items-center">
               <EnvelopeIcon className="mr-2 h-6 w-6 text-[var(--color-bordeau)]" />
               <a href="https://www.msn.com/fr-fr" target="_blank">eMail</a>
