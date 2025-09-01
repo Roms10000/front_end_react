@@ -52,7 +52,7 @@ e.preventDefault();
             <p className="mt-10  ml-10 text-lg great-vibes-regular">
 Ce site permet de faire une demande de devis concernant des prestations sur une application ou un site web. Nous savons tout faire. Même si vous ne trouvez pas votre bonheur dans les prestations proposées, n’hésitez pas à nous contacter : l’informatique, ça nous connaît !
             </p>
-            <div className="flex max-lg:flex max-lg:flex-col max-lg:items-center  gap-5 justify-center mt-20">
+            <div className="flex max-xl:flex-col max-xl:items-center gap-5 justify-center mt-20">
 <div className="card min-w-70">
   <div className="content">
     <div className="front">
@@ -107,10 +107,10 @@ Ce site permet de faire une demande de devis concernant des prestations sur une 
 {/* Partie droite */}
 <div className="relative w-full mt-8">
   {/* Image arbre */}
-  <img src="./img/arbre.webp" className="w-lg h-auto border lg:ml-65 1400:ml-70 md:ml-30 border-white rounded-2xl"/>
+  <img src="./img/arbre.webp" className="w-lg h-auto border lg:ml-65 xl:ml-20 1400:ml-70 md:ml-30 border-white rounded-2xl"/>
 
   {/* Bloc Contact en overlay (items en ligne) */}
-      <div className="absolute top-15 1400:left-70 1400:top-60 xl:text-sm lg:top-55 lg:left-65 md:top-18 375:top-8 md:left-40 max-lg:gap-8 max-lg:flex max-lg:flex-col xl:flex lg:flex justify-center space-x-4 sm:space-x-6 bg-white/30 px-4 py-2 rounded-xl great-vibes-regular text-[var(--color-bordeau)] text-sm" style={{background: '#ffffff30', padding: '5px 31px'}}>
+      <div className="absolute top-2 1400:left-70 1400:top-60 xl:top-55 xl:left-20 xl:text-sm lg:top-55 lg:left-65 md:top-18 425:top-18 425:left-10 375:top-8 md:left-40 max-lg:gap-8 max-lg:flex max-lg:flex-col xl:flex lg:flex justify-center space-x-4 sm:space-x-6 bg-white/30 px-4 py-2 rounded-xl great-vibes-regular text-[var(--color-bordeau)] text-sm" style={{background: '#ffffff30', padding: '5px 31px'}}>
           <p className="flex items-center">
             <EnvelopeIcon className="mr-2 h-6 w-6 text-[var(--color-bordeau)]" />
             <a href="https://www.msn.com/fr-fr" target="_blank">eMail</a>
