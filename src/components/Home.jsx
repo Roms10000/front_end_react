@@ -7,6 +7,7 @@ import Modal1 from "./Modal1";
 import Nav from "./Nav";
 import Footer from "./Footer";
 
+
 export default function Home () {
 
 const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -131,7 +132,7 @@ Ce site permet de faire une demande de devis concernant des prestations sur une 
             <a href="https://hazemgherissi.com/" target="_blank">Facebook</a>
             </p>
             </div>
-            <div className="ml-0 sm:ml-5 md:ml-10 lg:ml-20 xl:ml-28">
+            <div className="">
               <div className="mt-20 font-bold text-lg flex justify-center great-vibes-regular">Les entreprises avec lesquels nous avons travaillés :</div>
                 <div className="flex flex-wrap justify-center gap-10 mt-6">
                   <div className="flex flex-col items-center">

@@ -8,13 +8,15 @@ import { Link, useNavigate } from "react-router";
 
 export default function Dashboard ({Id}) {
 
+
+
     const [demandes, setDemandes] = useState([]);
     const [userRoles, setUserRoles] = useState([]);
-    const [factures, setFactures] = useState([]);
     const navigate = useNavigate();
-  useEffect(() => {
+useEffect(() => {
 
 const userId = localStorage.getItem("id");
+console.log(userId);
 const roleString = localStorage.getItem("roles")
 let roles = [];
     try {
@@ -26,7 +28,7 @@ let roles = [];
     }
     setUserRoles(roles);
 
-    if (!userId || roles.length === 0) {
+    if (!userId) {
         console.log("Utilisateur non trouvable");
         navigate("/login");
         return;
@@ -41,7 +43,6 @@ const fetchDemandes= async () => {
             if (!res.ok) throw new Error("Erreur fetch demandes");
             const data = await res.json();
             
-            // If it returns an array of demands
             setDemandes(data);
         } catch (error) {
             console.error(error);
@@ -56,7 +57,6 @@ navigate("/requestQuote");
 }
 
 const isAdmin = userRoles.includes("ROLE_ADMIN");
-
 return(
 <div className="flex flex-col min-h-[130vh]">
 <Nav />
@@ -77,8 +77,11 @@ return(
               </button>
         </div>
 
-        <div className="flex justify-center">
-            <table className="w-400 border border-gray-900 text-sm text-gray-900">
+        <div className="flex justify-center max-w-full">
+            <div className="scroll-table w-full">
+
+            
+            <table className="min-w-full border border-gray-900 text-sm text-gray-900">
                 <thead className="bg-gray-200 text-gray-900">
                     <tr>
                         <th className="px-4 py-2 text-left">n° de demande</th>
@@ -100,7 +103,7 @@ return(
                 {demandes.map((demande) => (
                     <tr key={demande.id} className="border-t hover:bg-gray-50">
                         <td className="px-4 py-2">{demande.id}</td>
-                        <td className="px-4 py-2">{demande.description}</td>
+                        <td className="px-4 py-2 break-words whitespace-normal max-w-xs"><div className="max-h-24 overflow-y-auto">{demande.description}</div></td>
                         {isAdmin && (
                                 <>
                                     <td className="px-4 py-2">{demande.nom}</td>
@@ -111,7 +114,7 @@ return(
                         <td className="px-4 py-2">{demande.statut!=null ? demande.statut : "--"}</td>
                     <td className="px-4 py-2">
                     {demande.devis_id!=null ? (
-                        <ModalDevis devisId={demande.devis_id} clientNom={demande.nom} clientPrenom={demande.prenom}/>
+                        <ModalDevis devisId={demande.devis_id} clientNom={demande.nom} clientPrenom={demande.prenom} />
                     ) : (
                         "--"
                     )}
@@ -119,11 +122,11 @@ return(
                         <td className="px-4 py-2">
                         {demande.facture!=null ? (
                                 <a
-                                  key={demande.facture}
-                                  href={`http://localhost:8000${demande.facture}`} // chemin vers le PDF
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-rose-300 underline"
+                                    key={demande.facture}
+                                    href={`http://localhost:8000${demande.facture}`} // chemin vers le PDF
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-rose-300 underline"
                                 >
                                 Voir la facture
                                 </a>
@@ -147,6 +150,7 @@ return(
                 </tbody>
             </table>
             </div>
+        </div>
     </div>
 </main>
 <Footer/>

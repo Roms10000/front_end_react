@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 // Composant de modal pour afficher un devis complet en se connectant à un backend Symfony (API Platform).
-export default function ModalDevis({devisId, clientNom, clientPrenom, onActionComplete}) {
+export default function ModalDevis({devisId, clientNom, clientPrenom,}) {
   const [showModal, setShowModal] = useState(false);
   const [devisData, setDevisData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -64,7 +64,7 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, onActionCo
     };
 
     fetchDevisData();
-  }, [devisId]);
+  }, []);
 
 
   const handleToggleModal = () => {
@@ -77,7 +77,7 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, onActionCo
       const response = await fetch(`http://localhost:8000/api/devis/${devisId}/accepter`, {
       method: "PATCH",
       headers: {
-        
+        "Content-Type": "application/merge-patch+json",
         "Accept": "application/ld+json",
       },
     });
@@ -93,14 +93,9 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, onActionCo
       })
       .catch(err => console.error(err));
 
-    alert("Le devis a été accepté et la facture générée !");
+    alert("Le devis a été accepté et son statut mis à jour !");
     setActionDone(true); 
     setShowModal(false);
-
-     // Call the function passed from the parent component
-      if (onActionComplete) {
-        onActionComplete();
-      }
 
     setTimeout(() => {
     window.location.reload();
@@ -115,7 +110,7 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, onActionCo
  const handleStatutCancel = async (e) => {
     e.preventDefault();
      try {
-      const response = await fetch(`http://localhost:8000/api/devis/${devisId}/refuse`, {
+      const response = await fetch(`http://localhost:8000/api/devis/${devisId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/merge-patch+json",
@@ -134,10 +129,6 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, onActionCo
     setActionDone(true);
     setShowModal(false);
 
-     // Call the function passed from the parent component
-      if (onActionComplete) {
-        onActionComplete();
-      }
 
     setTimeout(() => {
     window.location.reload();
@@ -167,14 +158,14 @@ export default function ModalDevis({devisId, clientNom, clientPrenom, onActionCo
   
   const data = devisData;
 
- /*  if (!data || !data.devis || !data.devis.prestations) {
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center  text-white text-xl">
-        Aucune donnée de devis ou de prestations trouvée.
-      </div>
-    );
-  }
- */
+  // if (!data || !data.devis || !data.devis.prestations) {
+  //   return (
+  //     <div className="fixed inset-0 z-50 flex items-center justify-center  text-white text-xl">
+  //       Aucune donnée de devis ou de prestations trouvée.
+  //     </div>
+  //   );
+  // }
+
 const ModalContent = () => (
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-70 backdrop-blur-sm p-4"
