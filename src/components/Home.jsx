@@ -104,12 +104,12 @@ Ce site permet de faire une demande de devis concernant des prestations sur une 
           </div>
 
 {/* Partie droite */}
-<div className="relative w-full max-w-[700px] mt-8 xl:ml-40">
+<div className="relative w-full mt-8">
   {/* Image arbre */}
-  <img src="./img/arbre.webp" className="w-full max-w-4xl h-auto border border-white rounded-2xl"/>
+  <img src="./img/arbre.webp" className="w-lg h-auto border lg:ml-65 1400:ml-70 md:ml-30 border-white rounded-2xl"/>
 
   {/* Bloc Contact en overlay (items en ligne) */}
-      <div className="absolute top-15 xl:top-85 max-xl:left-3 xl:left-8 sm:top-86 sm:-left-5 md:top-80 md:left-2 lg:top-75 lg:-left-5 xl:text-sm max-lg:flex max-lg:flex-col xl:flex lg:flex justify-center space-x-4 sm:space-x-6 bg-white/30 px-4 py-2 rounded-xl great-vibes-regular text-[var(--color-bordeau)] text-sm max-xl:text-lg" style={{background: '#ffffff30', padding: '5px 31px'}}>
+      <div className="absolute top-15 1400:left-70 1400:top-60 xl:text-sm lg:top-55 lg:left-65 md:top-18 375:top-8 md:left-40 max-lg:gap-8 max-lg:flex max-lg:flex-col xl:flex lg:flex justify-center space-x-4 sm:space-x-6 bg-white/30 px-4 py-2 rounded-xl great-vibes-regular text-[var(--color-bordeau)] text-sm" style={{background: '#ffffff30', padding: '5px 31px'}}>
           <p className="flex items-center">
             <EnvelopeIcon className="mr-2 h-6 w-6 text-[var(--color-bordeau)]" />
             <a href="https://www.msn.com/fr-fr" target="_blank">eMail</a>
@@ -123,23 +123,20 @@ Ce site permet de faire une demande de devis concernant des prestations sur une 
             <a href="https://www.linkedin.com/in/romain-richardon-4b8083245/" target="_blank">LinkedIn</a>
           </p>
           <p className="flex items-center">
-            <FaInstagram size={24} className="mr-2 text-[var(--color-bordeau)]" />
-            <a href="https://www.instagram.com/beyonce" target="_blank">Instagram</a>
-          </p>
-          <p className="flex items-center">
             <FaFacebook size={24} className="mr-2 text-[var(--color-bordeau)]" />
             <a href="https://hazemgherissi.com/" target="_blank">Facebook</a>
             </p>
             </div>
-            <div className="ml-0 sm:ml-5 md:ml-10 lg:ml-20 xl:ml-28">
-              <div className="mt-20 font-bold text-lg flex justify-center great-vibes-regular">Les entreprises avec lesquels nous avons travaillés :</div>
+            <div className="ml-0 1400:ml-40">
+              <div className="mt-20 font-bold text-lg flex justify-center great-vibes-regular ">Les entreprises avec lesquels nous avons travaillés :</div>
                 <div className="flex flex-wrap justify-center gap-10 mt-6">
                   <div className="flex flex-col items-center">
                     <img src="./img/chevalriz.png" className="h-20"/>
+                    
                     <Modal />
                   </div>
                   <div className="flex flex-col items-center">
-                    <img src="./img/dorcel.webp" className="h-20"/>
+                    <img src="./img/company.webp" className="h-20"/>
                     <Modal1 />
                   </div>
                 </div>
