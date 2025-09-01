@@ -34,7 +34,7 @@ e.preventDefault();
 
       {/* Contenu principal */}
       <main className="flex-grow">
-        <div className="grid grid-cols-2 max-xl:grid-cols-1 ">
+        <div className="grid grid-cols-[60%_40%] max-xl:grid-cols-1 ">
           {/* Partie gauche */}
           <div className="ml-5 text-wrap">
             <div id="container">
@@ -49,10 +49,10 @@ e.preventDefault();
             <h2 className="mt-10 font-bold text-4xl flex justify-center great-vibes-regular">
               A quoi servons nous exactement ?
             </h2>
-            <p className="mt-10  ml-10 text-lg great-vibes-regular">
+            <p className="mt-10 ml-10 425:ml-0 text-lg great-vibes-regular">
 Ce site permet de faire une demande de devis concernant des prestations sur une application ou un site web. Nous savons tout faire. Même si vous ne trouvez pas votre bonheur dans les prestations proposées, n’hésitez pas à nous contacter : l’informatique, ça nous connaît !
             </p>
-            <div className="flex max-xl:flex-col max-xl:items-center gap-5 justify-center mt-20">
+            <div className="flex max-2xl:flex-col max-2xl:items-center gap-5 justify-center mt-20">
 <div className="card min-w-70">
   <div className="content">
     <div className="front">
