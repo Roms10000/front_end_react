@@ -30,8 +30,8 @@ export default function Checkout({ prixtotal, handlePaiementTrue }) {
 
     const onApproveOrder = (data,actions) => {
         return actions.order.capture().then((details) => {
-        // const name = details.payer.name.given_name;
-        // alert('blabla');
+            const name = details.payer.name.given_name;
+            alert(`La transaction a bien été effectuée par ${name}`);
             handlePaiementTrue();
             // handleClosePayement();
             
