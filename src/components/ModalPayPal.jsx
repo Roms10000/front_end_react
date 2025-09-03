@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 export default function ModalPayPal({prixtotal, factureId}) {
 
     const initialOptions = {
-        "client-id": "AbylGC1pTGAgkg1JkQcXBOmx8YsDr7ia64zCWZRz4tuMgxgwyTRUKagsY5MncAcygtkbbP3URuPXfPSA",
+        "client-id": "YOUR_CLIENT_KEY_PAYPAL",
         currency: "EUR",
         intent: "capture",
     };
