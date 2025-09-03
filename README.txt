@@ -1,9 +1,9 @@
+This is just the front end of the website
 
-FRONT END : 
+-Run npm install
+-Generate the PDF → install the Adobe extension in your browser
+-To display the logo in the PDF → enable the GD extension in php.ini
 
-- faire un npm install
-- Récupérer le back-end -> https://github.com/SivanandaSS/Symfony_suivi_demande
-- générer PDF -> Télécharger extension adobe pour navigateur
-- Pour visualisation logo sur PDF -> activer extention gd dans php.ini
+Back end
 
-
+Fetch the back end from: https://github.com/SivanandaSS/Symfony_suivi_demande
