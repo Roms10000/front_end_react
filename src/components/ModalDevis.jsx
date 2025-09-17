@@ -85,26 +85,31 @@ export default function ModalDevis({devisId, clientNom, clientPrenom,}) {
       throw new Error(`Erreur API : ${response.status}`);
     }
     const data = await response.json();
-    
     const factureId = data.factureId;
-    fetch(`http://localhost:8000/facture/pdf/${factureId}`)
-      .then(res => {
-        if (!res.ok) throw new Error("Erreur lors de la génération du PDF");
-      })
-      .catch(err => console.error(err));
+    
+    
+    // You can now use factureId to fetch the PDF.
+      if (factureId) {
+          fetch(`http://localhost:8000/facture/pdf/${factureId}`)
+            .then(res => {
+              if (!res.ok) throw new Error("Erreur lors de la génération du PDF");
+              // If the fetch is successful, you could handle the PDF download here
+            })
+            .catch(err => console.error(err));
+      }
 
-    alert("Le devis a été accepté et son statut mis à jour !");
-    setActionDone(true); 
-    setShowModal(false);
+      alert("Le devis a été accepté et son statut mis à jour !");
+      setActionDone(true); 
+      setShowModal(false);
 
-    setTimeout(() => {
-    window.location.reload();
-    }, 1000);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
 
-  } catch (err) {
-    console.error("Erreur lors de la mise à jour du statut :", err);
-    alert("Impossible de mettre à jour le statut du devis.");
-  }
+    } catch (err) {
+      console.error("Erreur lors de la mise à jour du statut :", err);
+      alert("Impossible de mettre à jour le statut du devis.");
+    }
 };
 
  const handleStatutCancel = async (e) => {
@@ -124,6 +129,9 @@ export default function ModalDevis({devisId, clientNom, clientPrenom,}) {
     if (!response.ok) {
       throw new Error(`Erreur API : ${response.status}`);
     }
+
+    const data = await response.json();
+        console.log("Response from server:", data); // Check the data returned
 
     alert("Le devis a été refusé et son statut mis à jour !");
     setActionDone(true);
